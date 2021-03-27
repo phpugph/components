@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="false"
+     backupStaticAttributes="false"
+     colors="true"
+     convertErrorsToExceptions="true"
+     convertNoticesToExceptions="true"
+     convertWarningsToExceptions="true"
+     processIsolation="false"
+     stopOnFailure="false"
+     syntaxCheck="false"
+     bootstrap="test/bootstrap.php"
+>
+  <testsuites>
+    <testsuite name="Helper Test Suite">
+      <file>test/Helper/BinderTrait.php</file>
+      <file>test/Helper/ConditionalTrait.php</file>
+      <file>test/Helper/InstanceTrait.php</file>
+      <file>test/Helper/LoopTrait.php</file>
+      <file>test/Helper/SingletonTrait.php</file>
+    </testsuite>
+    <testsuite name="Resolver Test Suite">
+      <file>test/Resolver/ResolverException.php</file>
+      <file>test/Resolver/ResolverHandler.php</file>
+      <file>test/Resolver/ResolverTrait.php</file>
+      <file>test/Resolver/StateTrait.php</file>
+    </testsuite>
+    <testsuite name="Profiler Test Suite">
+      <file>test/Profiler/CallerTrait.php</file>
+      <file>test/Profiler/InspectorHandler.php</file>
+      <file>test/Profiler/InspectorTrait.php</file>
+      <file>test/Profiler/LoggerException.php</file>
+      <file>test/Profiler/LoggerTrait.php</file>
+    </testsuite>
+      <testsuite name="Event Test Suite">
+      <file>test/Event/EventEmitter.php</file>
+      <file>test/Event/EventObserver.php</file>
+      <file>test/Event/EventTrait.php</file>
+    </testsuite>
+    <testsuite name="Data Test Suite">
+      <file>test/Data/ArrayAccessTrait.php</file>
+      <file>test/Data/Collection.php</file>
+      <file>test/Data/CountableTrait.php</file>
+      <file>test/Data/DataException.php</file>
+      <file>test/Data/DataTrait.php</file>
+      <file>test/Data/DotTrait.php</file>
+      <file>test/Data/GeneratorTrait.php</file>
+      <file>test/Data/CloneTrait.php</file>
+      <file>test/Data/IteratorTrait.php</file>
+      <file>test/Data/MagicTrait.php</file>
+      <file>test/Data/Model.php</file>
+      <file>test/Data/Registry.php</file>
+    </testsuite>
+    <testsuite name="I18n Test Suite">
+      <file>test/I18n/Language.php</file>
+        <file>test/I18n/LanguageException.php</file>
+      <file>test/I18n/Timezone.php</file>
+      <file>test/I18n/TimezoneValidation.php</file>
+    </testsuite>
+    <testsuite name="IO Test Suite">
+      <file>test/IO/IOHandler.php</file>
+      <file>test/IO/Middleware.php</file>
+      <file>test/IO/Request.php</file>
+      <file>test/IO/Response.php</file>
+      <file>test/IO/Middleware/ErrorProcessorTrait.php</file>
+      <file>test/IO/Middleware/PostProcessorTrait.php</file>
+      <file>test/IO/Middleware/PreProcessorTrait.php</file>
+      <file>test/IO/Request/CliTrait.php</file>
+      <file>test/IO/Request/ContentTrait.php</file>
+      <file>test/IO/Request/CookieTrait.php</file>
+      <file>test/IO/Request/FileTrait.php</file>
+      <file>test/IO/Request/GetTrait.php</file>
+      <file>test/IO/Request/PostTrait.php</file>
+      <file>test/IO/Request/RequestTrait.php</file>
+      <file>test/IO/Request/RouteTrait.php</file>
+      <file>test/IO/Request/ServerTrait.php</file>
+      <file>test/IO/Request/SessionTrait.php</file>
+      <file>test/IO/Request/StageTrait.php</file>
+      <file>test/IO/Response/ContentTrait.php</file>
+      <file>test/IO/Response/HeaderTrait.php</file>
+      <file>test/IO/Response/ResponseTrait.php</file>
+      <file>test/IO/Response/RestTrait.php</file>
+      <file>test/IO/Response/StatusTrait.php</file>
+    </testsuite>
+    <testsuite name="Http Test Suite">
+      <file>test/Http/HttpDispatcher.php</file>
+      <file>test/Http/HttpException.php</file>
+      <file>test/Http/HttpHandler.php</file>
+      <file>test/Http/Router.php</file>
+      <file>test/Http/Dispatcher/DispatcherTrait.php</file>
+      <file>test/Http/Router/RouterTrait.php</file>
+    </testsuite>
+    <testsuite name="Terminal Test Suite">
+      <file>test/Terminal/TerminalException.php</file>
+      <file>test/Terminal/TerminalHelper.php</file>
+      <file>test/Terminal/TerminalHandler.php</file>
+    </testsuite>
+    <testsuite name="Package Test Suite">
+      <file>test/Package/PackageException.php</file>
+      <file>test/Package/Package.php</file>
+      <file>test/Package/PackageTrait.php</file>
+      <file>test/Package/PackageHandler.php</file>
+    </testsuite>
+    <testsuite name="Curl Test Suite">
+      <file>test/Curl/CurlHandler.php</file>
+      <file>test/Curl/Rest.php</file>
+    </testsuite>
+    <testsuite name="Image Test Suite">
+      <file>test/Image/ImageHandler.php</file>
+      <file>test/Image/ImageException.php</file>
+    </testsuite>
+    <testsuite name="Async Test Suite">
+      <file>test/Async/AsyncException.php</file>
+      <file>test/Async/Coroutine.php</file>
+      <file>test/Async/AsyncHandler.php</file>
+      <file>test/Async/Promise.php</file>
+      <file>test/Async/AsyncTrait.php</file>
+    </testsuite>
+  </testsuites>
+
+  <filter>
+  <whitelist>
+    <directory suffix=".php">./src</directory>
+    <exclude>
+    <directory>./vendor</directory>
+    <directory>./test</directory>
+    <file>src/Profiler/InspectorInterface.php</file>
+    <file>src/Resolver/ResolverInterface.php</file>
+    <file>src/Data/Collection/CollectionInterface.php</file>
+    <file>src/Data/Collection/CollectionException.php</file>
+    <file>src/Data/Registry/RegistryInterface.php</file>
+    <file>src/Data/Registry/RegistryException.php</file>
+    <file>src/Data/Model/ModelInterface.php</file>
+    <file>src/Data/Model/ModelException.php</file>
+    <file>src/Event/EventInterface.php</file>
+    <file>src/Curl/CurlException.php</file>
+    <file>src/Curl/map.php</file>
+    <file>src/IO/Middleware/MiddlewareInterface.php</file>
+    <file>src/IO/Request/RequestInterface.php</file>
+    <file>src/IO/Response/ResponseInterface.php</file>
+    <file>src/Http/Dispatcher/DispatcherInterface.php</file>
+    <file>src/Http/Router/RouterInterface.php</file>
+    <file>src/Http/map/output.php</file>
+    <file>src/Http/map/redirect.php</file>
+    <file>src/Async/PromiseInterface.php</file>
+    <file>src/Async/QueueInterface.php</file>
+    <file>src/Async/map/noop.php</file>
+    <file>src/Async/map/shutdown.php</file>
+    <file>src/Async/map/socket.php</file>
+    </exclude>
+  </whitelist>
+  </filter>
+</phpunit>
