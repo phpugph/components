@@ -18,7 +18,7 @@ class Profiler_InspectorTrait_Test extends TestCase
    * Sets up the fixture, for example, opens a network connection.
    * This method is called before a test is executed.
    */
-  protected function setUp()
+  protected function setUp(): void
   {
     $this->object = new InspectorTraitStub;
   }
@@ -27,7 +27,7 @@ class Profiler_InspectorTrait_Test extends TestCase
    * Tears down the fixture, for example, closes a network connection.
    * This method is called after a test is executed.
    */
-  protected function tearDown()
+  protected function tearDown(): void
   {
   }
 
@@ -70,7 +70,7 @@ class Profiler_InspectorTrait_Test extends TestCase
     $contents = ob_get_contents();
     ob_end_clean();
 
-    $this->assertContains(
+    $this->assertStringContainsString(
       '<pre>INSPECTING UGComponents\Profiler\InspectorTraitStub:',
       $contents
     );
@@ -90,9 +90,9 @@ class Profiler_InspectorTrait_Test extends TestCase
     $contents = ob_get_contents();
     ob_end_clean();
 
-    $this->assertContains('[0] => 1', $contents);
-    $this->assertContains('[1] => 2', $contents);
-    $this->assertContains('[2] => 3', $contents);
+    $this->assertStringContainsString('[0] => 1', $contents);
+    $this->assertStringContainsString('[1] => 2', $contents);
+    $this->assertStringContainsString('[2] => 3', $contents);
   }
 
   /**

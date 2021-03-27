@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit backupGlobals="false"
-     backupStaticAttributes="false"
-     colors="true"
-     convertErrorsToExceptions="true"
-     convertNoticesToExceptions="true"
-     convertWarningsToExceptions="true"
-     processIsolation="false"
-     stopOnFailure="false"
-     syntaxCheck="false"
-     bootstrap="test/bootstrap.php"
+<phpunit
+  backupGlobals="false"
+  backupStaticAttributes="false"
+  colors="true"
+  convertErrorsToExceptions="true"
+  convertNoticesToExceptions="true"
+  convertWarningsToExceptions="true"
+  processIsolation="false"
+  stopOnFailure="false"
+  bootstrap="test/bootstrap.php"
 >
   <testsuites>
     <testsuite name="Helper Test Suite">
@@ -29,7 +28,6 @@
       <file>test/Profiler/CallerTrait.php</file>
       <file>test/Profiler/InspectorHandler.php</file>
       <file>test/Profiler/InspectorTrait.php</file>
-      <file>test/Profiler/LoggerException.php</file>
       <file>test/Profiler/LoggerTrait.php</file>
     </testsuite>
       <testsuite name="Event Test Suite">
@@ -118,36 +116,36 @@
     </testsuite>
   </testsuites>
 
-  <filter>
-  <whitelist>
-    <directory suffix=".php">./src</directory>
+  <coverage>
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
     <exclude>
-    <directory>./vendor</directory>
-    <directory>./test</directory>
-    <file>src/Profiler/InspectorInterface.php</file>
-    <file>src/Resolver/ResolverInterface.php</file>
-    <file>src/Data/Collection/CollectionInterface.php</file>
-    <file>src/Data/Collection/CollectionException.php</file>
-    <file>src/Data/Registry/RegistryInterface.php</file>
-    <file>src/Data/Registry/RegistryException.php</file>
-    <file>src/Data/Model/ModelInterface.php</file>
-    <file>src/Data/Model/ModelException.php</file>
-    <file>src/Event/EventInterface.php</file>
-    <file>src/Curl/CurlException.php</file>
-    <file>src/Curl/map.php</file>
-    <file>src/IO/Middleware/MiddlewareInterface.php</file>
-    <file>src/IO/Request/RequestInterface.php</file>
-    <file>src/IO/Response/ResponseInterface.php</file>
-    <file>src/Http/Dispatcher/DispatcherInterface.php</file>
-    <file>src/Http/Router/RouterInterface.php</file>
-    <file>src/Http/map/output.php</file>
-    <file>src/Http/map/redirect.php</file>
-    <file>src/Async/PromiseInterface.php</file>
-    <file>src/Async/QueueInterface.php</file>
-    <file>src/Async/map/noop.php</file>
-    <file>src/Async/map/shutdown.php</file>
-    <file>src/Async/map/socket.php</file>
+      <directory>./vendor</directory>
+      <directory>./test</directory>
+      <file>src/Profiler/InspectorInterface.php</file>
+      <file>src/Resolver/ResolverInterface.php</file>
+      <file>src/Data/Collection/CollectionInterface.php</file>
+      <file>src/Data/Collection/CollectionException.php</file>
+      <file>src/Data/Registry/RegistryInterface.php</file>
+      <file>src/Data/Registry/RegistryException.php</file>
+      <file>src/Data/Model/ModelInterface.php</file>
+      <file>src/Data/Model/ModelException.php</file>
+      <file>src/Event/EventInterface.php</file>
+      <file>src/Curl/CurlException.php</file>
+      <file>src/Curl/map.php</file>
+      <file>src/IO/Middleware/MiddlewareInterface.php</file>
+      <file>src/IO/Request/RequestInterface.php</file>
+      <file>src/IO/Response/ResponseInterface.php</file>
+      <file>src/Http/Dispatcher/DispatcherInterface.php</file>
+      <file>src/Http/Router/RouterInterface.php</file>
+      <file>src/Http/map/output.php</file>
+      <file>src/Http/map/redirect.php</file>
+      <file>src/Async/PromiseInterface.php</file>
+      <file>src/Async/QueueInterface.php</file>
+      <file>src/Async/map/noop.php</file>
+      <file>src/Async/map/shutdown.php</file>
+      <file>src/Async/map/socket.php</file>
     </exclude>
-  </whitelist>
-  </filter>
+  </coverage>
 </phpunit>
