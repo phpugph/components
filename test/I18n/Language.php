@@ -23,7 +23,7 @@ class I18n_Language_Test extends TestCase
    * Sets up the fixture, for example, opens a network connection.
    * This method is called before a test is executed.
    */
-  protected function setUp()
+  protected function setUp(): void
   {
     $this->object = new Language(__DIR__.'/../assets/language/tagalog.php');
   }
@@ -32,7 +32,7 @@ class I18n_Language_Test extends TestCase
    * Tears down the fixture, for example, closes a network connection.
    * This method is called after a test is executed.
    */
-  protected function tearDown()
+  protected function tearDown(): void
   {
   }
 
@@ -263,7 +263,7 @@ class I18n_Language_Test extends TestCase
   public function test__toString()
   {
     $actual = $this->object->__toString();
-    $this->assertContains('"How are you?": "Kumusta ka?"', $actual);
+    $this->assertStringContainsString('"How are you?": "Kumusta ka?"', $actual);
   }
 
   /**
@@ -272,7 +272,7 @@ class I18n_Language_Test extends TestCase
   public function test__toStringData()
   {
     $actual = $this->object->__toStringData();
-    $this->assertContains('"How are you?": "Kumusta ka?"', $actual);
+    $this->assertStringContainsString('"How are you?": "Kumusta ka?"', $actual);
   }
 
   /**

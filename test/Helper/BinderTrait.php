@@ -19,7 +19,7 @@ class Helper_BinderTrait_Test extends TestCase
    * Sets up the fixture, for example, opens a network connection.
    * This method is called before a test is executed.
    */
-  protected function setUp()
+  protected function setUp(): void
   {
     $this->object = new BinderTraitStub;
   }
@@ -28,7 +28,7 @@ class Helper_BinderTrait_Test extends TestCase
    * Tears down the fixture, for example, closes a network connection.
    * This method is called after a test is executed.
    */
-  protected function tearDown()
+  protected function tearDown(): void
   {
   }
 
@@ -40,14 +40,14 @@ class Helper_BinderTrait_Test extends TestCase
     $trigger = new StdClass;
     $trigger->success = null;
 		$trigger->test = $this;
-		
+
 		$callback = $this->object->bindCallback(function() use ($trigger) {
 	  	$trigger->success = true;
 			$trigger->test->assertInstanceOf('UGComponents\Helper\BinderTraitStub', $this);
 		});
-		
+
 		$callback();
-		
+
 		$this->assertTrue($trigger->success);
   }
 }

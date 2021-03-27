@@ -22,7 +22,7 @@ class Data_Collection_Test extends TestCase
    *
    * @covers UGComponents\Data\Collection::__construct
    */
-  protected function setUp()
+  protected function setUp(): void
   {
     $this->object = new Collection([
       [
@@ -50,7 +50,7 @@ class Data_Collection_Test extends TestCase
    * Tears down the fixture, for example, closes a network connection.
    * This method is called after a test is executed.
    */
-  protected function tearDown()
+  protected function tearDown(): void
   {
   }
 
@@ -121,7 +121,7 @@ class Data_Collection_Test extends TestCase
     $actual = $this->object->post_title;
 
     foreach($actual as $title) {
-      $this->assertContains('Foobar', $title);
+      $this->assertStringContainsString('Foobar', $title);
     }
   }
 

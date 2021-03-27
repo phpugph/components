@@ -26,7 +26,7 @@ class Http_HttpDispatcher_Test extends TestCase
    *
    * @covers UGComponents\Http\HttpDispatcher::__construct
    */
-  protected function setUp()
+  protected function setUp(): void
   {
     $this->object = new HttpDispatcher;
     $this->response = new Response;
@@ -41,7 +41,7 @@ class Http_HttpDispatcher_Test extends TestCase
    * Tears down the fixture, for example, closes a network connection.
    * This method is called after a test is executed.
    */
-  protected function tearDown()
+  protected function tearDown(): void
   {
   }
 

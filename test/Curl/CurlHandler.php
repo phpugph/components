@@ -21,7 +21,7 @@ class Curl_CurlHandler_Test extends TestCase
    * Sets up the fixture, for example, opens a network connection.
    * This method is called before a test is executed.
    */
-  protected function setUp()
+  protected function setUp(): void
   {
     $this->object = new CurlHandler(function($options) {
       $options['response'] = 'foobar';
@@ -33,7 +33,7 @@ class Curl_CurlHandler_Test extends TestCase
    * Tears down the fixture, for example, closes a network connection.
    * This method is called after a test is executed.
    */
-  protected function tearDown()
+  protected function tearDown(): void
   {
   }
 
@@ -43,7 +43,7 @@ class Curl_CurlHandler_Test extends TestCase
   public function test__call()
   {
     //CURLOPT_FOLLOWLOCATION
-    $instance = $this->object->__call('setFollowLocation', true);
+    $instance = $this->object->__call('setFollowLocation', [true]);
     $this->assertInstanceOf('UGComponents\Curl\CurlHandler', $instance);
 
     $thrown = false;
