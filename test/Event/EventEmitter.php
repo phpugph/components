@@ -124,7 +124,7 @@ class Event_EventEmitter_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Event\EventEmitter::trigger
+   * @covers UGComponents\Event\EventEmitter::emit
    */
   public function testTrigger()
   {

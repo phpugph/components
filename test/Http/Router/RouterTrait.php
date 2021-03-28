@@ -105,7 +105,7 @@ class Http_RouterTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\Http\RouterTrait::triggerRoute
+   * covers UGComponents\Http\RouterTrait::routeTo
    */
   public function testRouteTo()
   {

@@ -433,7 +433,7 @@ class Data_Collection_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Data\Collection::trigger
+   * @covers UGComponents\Data\Collection::emit
    */
   public function testTrigger()
   {

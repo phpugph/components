@@ -118,7 +118,7 @@ class Event_EventTrait_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Event\EventTrait::trigger
+   * @covers UGComponents\Event\EventTrait::emit
    */
   public function testEmit()
   {
