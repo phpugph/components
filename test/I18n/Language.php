@@ -330,7 +330,7 @@ class I18n_Language_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\I18n\Language::trigger
+   * @covers UGComponents\I18n\Language::emit
    */
   public function testTrigger()
   {

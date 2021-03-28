@@ -387,7 +387,7 @@ class Data_Registry_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Data\Registry::trigger
+   * @covers UGComponents\Data\Registry::emit
    */
   public function testTrigger()
   {

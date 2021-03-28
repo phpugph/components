@@ -362,7 +362,7 @@ class Data_Model_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Data\Model::trigger
+   * @covers UGComponents\Data\Model::emit
    */
   public function testTrigger()
   {

@@ -93,8 +93,7 @@ trait PackageTrait
     string $vendor,
     ?string $root = null,
     ?string $bootstrap = null
-  )
-  {
+  ) {
     //if no bootstrap file name defined and theres a getBootstrapFileName method
     if (is_null($bootstrap) && method_exists($this, 'getBootstrapFileName')) {
       //use that
