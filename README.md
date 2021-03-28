@@ -1,4 +1,4 @@
-# Common PHP Patterns and Constructs
+# Common PHP8 Patterns and Constructs
 
 [![Travis CI](https://travis-ci.org/phpugph/components.svg?branch=master)](https://travis-ci.org/phpugph/components)
 [![Coverage Status](https://coveralls.io/repos/github/phpugph/components/badge.svg?branch=master)](https://coveralls.io/github/phpugph/components?branch=master)
