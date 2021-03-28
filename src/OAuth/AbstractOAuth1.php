@@ -574,12 +574,16 @@ abstract class AbstractOAuth1
   {
     switch ($this->signature) {
       case self::HMAC_SHA1:
-        return $this->getHmacSha1Signature($query);
+        $signature = $this->getHmacSha1Signature($query);
+        break;
       case self::RSA_SHA1:
       case self::PLAIN_TEXT:
       default:
-        return $this->getHmacPlainTextSignature();
+        $signature = $this->getHmacPlainTextSignature();
+        break;
     }
+
+    return $signature;
   }
 
   /**
