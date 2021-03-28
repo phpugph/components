@@ -36,8 +36,8 @@ class Event_EventEmitter_Test extends TestCase
 
   /**
    * @covers UGComponents\Event\EventEmitter::unbind
-   * @covers UGComponents\Event\EventEmitter::removeObserversByEvent
-   * @covers UGComponents\Event\EventEmitter::removeObserversByCallback
+   * @covers UGComponents\Event\EventEmitter::unbindByEvent
+   * @covers UGComponents\Event\EventEmitter::unbindByCallback
    */
   public function testOff()
   {
