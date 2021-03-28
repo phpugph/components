@@ -221,7 +221,7 @@ class IO_Response_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\IO\Response::addValidation
+   * @covers UGComponents\IO\Response::invalidate
    */
   public function testAddValidation()
   {

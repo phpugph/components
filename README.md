@@ -1,7 +1,7 @@
-# Common PHP Patterns and Constructs
+# Common PHP8 Patterns and Constructs
 
-[![Travis CI](https://travis-ci.org/phpugph/components.svg?branch=master)](https://travis-ci.org/phpugph/components)
-[![Coverage Status](https://coveralls.io/repos/github/phpugph/components/badge.svg?branch=master)](https://coveralls.io/github/phpugph/components?branch=master)
+[![Build Status](https://travis-ci.com/phpugph/components.svg?branch=main)](https://travis-ci.com/phpugph/components)
+[![Coverage Status](https://coveralls.io/repos/github/phpugph/components/badge.svg?branch=main)](https://coveralls.io/github/phpugph/components?branch=main)
 [![Latest Stable Version](https://poser.pugx.org/phpugph/components/v/stable)](https://packagist.org/packages/phpugph/components)
 [![Total Downloads](https://poser.pugx.org/phpugph/components/downloads)](https://packagist.org/packages/phpugph/components)
 [![Latest Unstable Version](https://poser.pugx.org/phpugph/components/v/unstable)](https://packagist.org/packages/phpugph/components)

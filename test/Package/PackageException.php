@@ -32,7 +32,7 @@ class Package_Exception_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Package\Exception::forFileNotFound
+   * @covers UGComponents\Package\PackageException::forFileNotFound
    */
   public function testForFileNotFound()
   {
@@ -48,7 +48,7 @@ class Package_Exception_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Package\Exception::forFolderNotFound
+   * @covers UGComponents\Package\PackageException::forFolderNotFound
    */
   public function testForFolderNotFound()
   {
@@ -64,7 +64,7 @@ class Package_Exception_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Package\Exception::forMethodNotFound
+   * @covers UGComponents\Package\PackageException::forMethodNotFound
    */
   public function testForMethodNotFound()
   {
@@ -80,7 +80,7 @@ class Package_Exception_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Package\Exception::forPackageNotFound
+   * @covers UGComponents\Package\PackageException::forPackageNotFound
    */
   public function testForPackageNotFound()
   {
