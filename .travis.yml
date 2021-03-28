@@ -2,7 +2,7 @@ language: php
 php:
   - 8.0
 install:
-  - /home/travis/.phpenv/versions/7.1/bin/composer install
+  - /home/travis/.phpenv/versions/8.0/bin/composer install
   - phpenv rehash
 before_script:
   - mkdir -p build/logs
