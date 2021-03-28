@@ -33,7 +33,6 @@ class Data_CloneTrait_Test extends TestCase
 
   /**
    * @covers UGComponents\Data\CloneTrait::clone
-   * @covers UGComponents\Data\CloneTrait::__clone
    */
   public function testClone()
   {
