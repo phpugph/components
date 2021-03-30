@@ -1,7 +1,7 @@
 {
   "name": "phpugph/components",
   "type": "library",
-  "description": "Common PHP Patterns and Constructs",
+  "description": "Common PHP8 Patterns and Constructs",
   "keywords": [
     "library",
     "php80"
