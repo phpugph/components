@@ -46,17 +46,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::addValidation
-   */
-  public function testInvalidate()
-  {
-    $instance = $this->object->invalidate('zoo', 'foo');
-    $this->assertInstanceOf('UGComponents\IO\Response\RestTraitStub', $instance);
-    $this->assertFalse($this->object->isValid());
-  }
-
-  /**
-   * covers UGComponents\IO\Response\RestTrait::getResults
+   * @covers UGComponents\IO\Response\RestTrait::getResults
    */
   public function testGetResults()
   {
@@ -67,7 +57,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::getMessage
+   * @covers UGComponents\IO\Response\RestTrait::getMessage
    */
   public function testGetMessage()
   {
@@ -76,7 +66,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::getMessageType
+   * @covers UGComponents\IO\Response\RestTrait::getMessageType
    */
   public function testGetMessageType()
   {
@@ -93,7 +83,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::getValidation
+   * @covers UGComponents\IO\Response\RestTrait::getValidation
    */
   public function testGetValidation()
   {
@@ -104,7 +94,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::hasJson
+   * @covers UGComponents\IO\Response\RestTrait::hasJson
    */
   public function testHasJson()
   {
@@ -112,7 +102,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::hasMessage
+   * @covers UGComponents\IO\Response\RestTrait::hasMessage
    */
   public function testHasMessage()
   {
@@ -120,7 +110,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::hasResults
+   * @covers UGComponents\IO\Response\RestTrait::hasResults
    */
   public function testHasResults()
   {
@@ -130,7 +120,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::hasValidation
+   * @covers UGComponents\IO\Response\RestTrait::hasValidation
    */
   public function testHasValidation()
   {
@@ -140,7 +130,20 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::isError
+   * @covers UGComponents\IO\Response\RestTrait::invalidate
+   * @covers UGComponents\IO\Response\RestTrait::isValid
+   */
+  public function testInvalidate()
+  {
+    $handler = new RestTraitStub;
+    $this->assertTrue($handler->isValid());
+    $handler->invalidate('foo', 'bar');
+    $handler->invalidate(['foo' => 'bar']);
+    $this->assertFalse($handler->isValid());
+  }
+
+  /**
+   * @covers UGComponents\IO\Response\RestTrait::isError
    */
   public function testIsError()
   {
@@ -154,7 +157,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::isSuccess
+   * @covers UGComponents\IO\Response\RestTrait::isSuccess
    */
   public function testIsSuccess()
   {
@@ -168,7 +171,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::removeResults
+   * @covers UGComponents\IO\Response\RestTrait::removeResults
    */
   public function testRemoveResults()
   {
@@ -177,7 +180,7 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::removeValidation
+   * @covers UGComponents\IO\Response\RestTrait::removeValidation
    */
   public function testRemoveValidation()
   {
@@ -186,20 +189,23 @@ class IO_Response_RestTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::setError
+   * @covers UGComponents\IO\Response\RestTrait::setError
    */
   public function testSetError()
   {
-    $instance = $this->object->setError(false);
+    $instance = $this->object->setError(false, 'something');
     $this->assertInstanceOf('UGComponents\IO\Response\RestTraitStub', $instance);
   }
 
   /**
-   * covers UGComponents\IO\Response\RestTrait::setResults
+   * @covers UGComponents\IO\Response\RestTrait::setResults
    */
   public function testSetResults()
   {
     $instance = $this->object->setResults('zoo', 'foo');
+    $this->assertInstanceOf('UGComponents\IO\Response\RestTraitStub', $instance);
+
+    $instance = $this->object->setResults(['zoo' => 'foo']);
     $this->assertInstanceOf('UGComponents\IO\Response\RestTraitStub', $instance);
   }
 }

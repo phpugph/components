@@ -37,7 +37,13 @@ class Resolver_ResolverTrait_Test extends TestCase
   public function test__callResolver()
   {
     $actual = $this->object->__callResolver(ResolverCallStub::class, [])->foo('bar');
-		$this->assertEquals('barfoo', $actual);
+    $this->assertEquals('barfoo', $actual);
+
+    try {
+      $this->object->__callResolver('foobarzoo', []);
+    } catch (ResolverException $e) {
+      $this->assertEquals('Could not find method UGComponents\Resolver\ResolverTraitStub->foobarzoo().', $e->getMessage());
+    }
   }
 
   /**
@@ -46,7 +52,7 @@ class Resolver_ResolverTrait_Test extends TestCase
   public function testAddResolver()
   {
     $actual = $this->object->addResolver(ResolverCallStub::class, function() {});
-		$this->assertInstanceOf('UGComponents\Resolver\ResolverTraitStub', $actual);
+    $this->assertInstanceOf('UGComponents\Resolver\ResolverTraitStub', $actual);
   }
 
   /**
@@ -55,7 +61,7 @@ class Resolver_ResolverTrait_Test extends TestCase
   public function testGetResolverHandler()
   {
     $actual = $this->object->getResolverHandler();
-		$this->assertInstanceOf('UGComponents\Resolver\ResolverInterface', $actual);
+    $this->assertInstanceOf('UGComponents\Resolver\ResolverInterface', $actual);
   }
 
   /**
@@ -64,13 +70,13 @@ class Resolver_ResolverTrait_Test extends TestCase
   public function testResolve()
   {
     $actual = $this->object->addResolver(
-			ResolverCallStub::class,
-			function() {
-				return new ResolverAddStub();
-			}
-		)
-		->resolve(ResolverCallStub::class)
-		->foo('bar');
+      ResolverCallStub::class,
+      function() {
+        return new ResolverAddStub();
+      }
+    )
+    ->resolve(ResolverCallStub::class)
+    ->foo('bar');
 
     $this->assertEquals('barfoo', $actual);
 
@@ -93,17 +99,17 @@ class Resolver_ResolverTrait_Test extends TestCase
   public function testResolveShared()
   {
     $actual = $this
-			->object
-			->resolveShared(ResolverSharedStub::class)
-			->reset()
-			->foo('bar');
+      ->object
+      ->resolveShared(ResolverSharedStub::class)
+      ->reset()
+      ->foo('bar');
 
     $this->assertEquals('barfoo', $actual);
 
-		$actual = $this
-			->object
-			->resolveShared(ResolverSharedStub::class)
-			->foo('bar');
+    $actual = $this
+      ->object
+      ->resolveShared(ResolverSharedStub::class)
+      ->foo('bar');
 
     $this->assertEquals('barbar', $actual);
   }
@@ -114,12 +120,12 @@ class Resolver_ResolverTrait_Test extends TestCase
   public function testResolveStatic()
   {
     $actual = $this
-			->object
-			->resolveStatic(
-				ResolverStaticStub::class,
-				'foo',
-				'bar'
-			);
+      ->object
+      ->resolveStatic(
+        ResolverStaticStub::class,
+        'foo',
+        'bar'
+      );
 
     $this->assertEquals('barfoo', $actual);
   }
@@ -130,69 +136,71 @@ class Resolver_ResolverTrait_Test extends TestCase
   public function testSetResolverHandler()
   {
     $actual = $this->object->setResolverHandler(new ResolverHandlerStub);
-		$this->assertInstanceOf('UGComponents\Resolver\ResolverTraitStub', $actual);
+    $this->assertInstanceOf('UGComponents\Resolver\ResolverTraitStub', $actual);
+    $actual = $this->object->setResolverHandler(new ResolverHandlerStub, true);
+    $this->assertInstanceOf('UGComponents\Resolver\ResolverTraitStub', $actual);
   }
 }
 
 if(!class_exists('UGComponents\Resolver\ResolverTraitStub')) {
-	class ResolverTraitStub
-	{
-		use ResolverTrait;
-	}
+  class ResolverTraitStub
+  {
+    use ResolverTrait;
+  }
 }
 
 if(!class_exists('UGComponents\Resolver\ResolverCallStub')) {
-	class ResolverCallStub
-	{
-		public function foo($string)
-		{
-			return $string . 'foo';
-		}
-	}
+  class ResolverCallStub
+  {
+    public function foo($string)
+    {
+      return $string . 'foo';
+    }
+  }
 }
 
 if(!class_exists('UGComponents\Resolver\ResolverAddStub')) {
-	class ResolverAddStub
-	{
-		public function foo($string)
-		{
-			return $string . 'foo';
-		}
-	}
+  class ResolverAddStub
+  {
+    public function foo($string)
+    {
+      return $string . 'foo';
+    }
+  }
 }
 
 if(!class_exists('UGComponents\Resolver\ResolverSharedStub')) {
-	class ResolverSharedStub
-	{
-		public $name = 'foo';
+  class ResolverSharedStub
+  {
+    public $name = 'foo';
 
-		public function foo($string)
-		{
-			$name = $this->name;
-			$this->name = $string;
-			return $string . $name;
-		}
+    public function foo($string)
+    {
+      $name = $this->name;
+      $this->name = $string;
+      return $string . $name;
+    }
 
-		public function reset()
-		{
-			$this->name = 'foo';
-			return $this;
-		}
-	}
+    public function reset()
+    {
+      $this->name = 'foo';
+      return $this;
+    }
+  }
 }
 
 if(!class_exists('UGComponents\Resolver\ResolverStaticStub')) {
-	class ResolverStaticStub
-	{
-		public static function foo($string)
-		{
-			return $string . 'foo';
-		}
-	}
+  class ResolverStaticStub
+  {
+    public static function foo($string)
+    {
+      return $string . 'foo';
+    }
+  }
 }
 
 if(!class_exists('UGComponents\Resolver\ResolverHandlerStub')) {
-	class ResolverHandlerStub extends ResolverHandler
-	{
-	}
+  class ResolverHandlerStub extends ResolverHandler
+  {
+  }
 }

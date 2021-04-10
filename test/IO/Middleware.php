@@ -32,6 +32,14 @@ class IO_Middleware_Test extends TestCase
   }
 
   /**
+   * @covers UGComponents\IO\Middleware::isEmpty
+   */
+  public function testIsEmpty()
+  {
+    $this->assertTrue($this->object->isEmpty());
+  }
+
+  /**
    * @covers UGComponents\IO\Middleware::register
    */
   public function testRegister()

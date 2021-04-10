@@ -45,7 +45,7 @@ class IO_Response_PageTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\PageTrait::addMeta
+   * @covers UGComponents\IO\Response\PageTrait::addMeta
    */
   public function testAddMeta()
   {
@@ -54,7 +54,7 @@ class IO_Response_PageTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\PageTrait::getFlash
+   * @covers UGComponents\IO\Response\PageTrait::getFlash
    */
   public function testGetFlash()
   {
@@ -64,7 +64,7 @@ class IO_Response_PageTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\PageTrait::getMeta
+   * @covers UGComponents\IO\Response\PageTrait::getMeta
    */
   public function testGetMeta()
   {
@@ -75,7 +75,7 @@ class IO_Response_PageTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\PageTrait::getPage
+   * @covers UGComponents\IO\Response\PageTrait::getPage
    */
   public function testGetPage()
   {
@@ -86,16 +86,18 @@ class IO_Response_PageTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\PageTrait::hasPage
+   * @covers UGComponents\IO\Response\PageTrait::hasPage
    */
   public function testHasPage()
   {
     $this->assertTrue($this->object->hasPage());
     $this->assertTrue($this->object->hasPage('title'));
+    $this->assertTrue($this->object->hasPage('flash', 'message'));
+    $this->assertFalse($this->object->hasPage('flash', 'foo', 'bar'));
   }
 
   /**
-   * covers UGComponents\IO\Response\PageTrait::removePage
+   * @covers UGComponents\IO\Response\PageTrait::removePage
    */
   public function testRemovePage()
   {
@@ -104,7 +106,7 @@ class IO_Response_PageTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\PageTrait::setFlash
+   * @covers UGComponents\IO\Response\PageTrait::setFlash
    */
   public function testSetFlash()
   {
@@ -113,18 +115,20 @@ class IO_Response_PageTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\PageTrait::setPage
+   * @covers UGComponents\IO\Response\PageTrait::setPage
    */
   public function testSetPage()
   {
     $instance = $this->object->setPage('foo', 'bar');
+    $this->assertInstanceOf('UGComponents\IO\Response\PageTraitStub', $instance);
+    $instance = $this->object->setPage('foo');
     $this->assertInstanceOf('UGComponents\IO\Response\PageTraitStub', $instance);
     $instance = $this->object->setPage();
     $this->assertInstanceOf('UGComponents\IO\Response\PageTraitStub', $instance);
   }
 
   /**
-   * covers UGComponents\IO\Response\PageTrait::setTitle
+   * @covers UGComponents\IO\Response\PageTrait::setTitle
    */
   public function testSetTitle()
   {

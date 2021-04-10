@@ -110,9 +110,12 @@ class TerminalHelper
       $message = sprintf($color, $message);
     }
 
+    // @codeCoverageIgnoreStart
+    //not testable
     if (is_null(self::$map)) {
       self::setMap();
     }
+    // @codeCoverageIgnoreEnd
 
     call_user_func(self::$map, $message);
   }

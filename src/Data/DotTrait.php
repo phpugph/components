@@ -31,10 +31,6 @@ trait DotTrait
   {
     $args = explode($separator, $notation);
 
-    if (count($args) == 0) {
-      return null;
-    }
-
     $last = array_pop($args);
     $pointer = &$this->data;
 
@@ -64,10 +60,6 @@ trait DotTrait
   public function isDot(string $notation, string $separator = '.'): bool
   {
     $args = explode($separator, $notation);
-
-    if (count($args) == 0) {
-      return false;
-    }
 
     $last = array_pop($args);
 
@@ -101,10 +93,6 @@ trait DotTrait
   {
     $args = explode($separator, $notation);
 
-    if (count($args) === 0) {
-      return $this;
-    }
-
     $last = array_pop($args);
 
     $pointer = &$this->data;
@@ -136,10 +124,6 @@ trait DotTrait
   public function setDot(string $notation, $value, string $separator = '.')
   {
     $args = explode($separator, $notation);
-
-    if (count($args) === 0) {
-      return $this;
-    }
 
     $last = array_pop($args);
 

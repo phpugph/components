@@ -93,6 +93,7 @@ trait ServerTrait
   public function isCLI(): bool
   {
     $server = $this->getServer();
+    // @codeCoverageIgnoreStart
     return defined('STDIN')
       || php_sapi_name() === 'cli'
       || (
@@ -100,6 +101,7 @@ trait ServerTrait
         && !isset($server['HTTP_USER_AGENT'])
         && count($server['argv']) > 0
       ) || !array_key_exists('REQUEST_METHOD', $server);
+    // @codeCoverageIgnoreEnd
   }
 
   /**

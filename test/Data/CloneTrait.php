@@ -36,7 +36,7 @@ class Data_CloneTrait_Test extends TestCase
    */
   public function testClone()
   {
-    $clone = $this->object->clone();
+    $clone = $this->object->clone(true);
     $actual = $clone->set()->get();
     $this->assertEquals('foo2', $actual['bar']['zoo']);
     $this->assertEquals('foo', $this->object->get()['bar']['zoo']);
@@ -58,6 +58,10 @@ if(!class_exists('UGComponents\Data\CloneTraitStub')) {
     public function get()
     {
       return $this->data;
+    }
+
+    public function purge()
+    {
     }
 
     public function set()

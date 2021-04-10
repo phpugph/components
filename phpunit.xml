@@ -30,7 +30,7 @@
       <file>test/Profiler/InspectorTrait.php</file>
       <file>test/Profiler/LoggerTrait.php</file>
     </testsuite>
-      <testsuite name="Event Test Suite">
+    <testsuite name="Event Test Suite">
       <file>test/Event/EventEmitter.php</file>
       <file>test/Event/EventObserver.php</file>
       <file>test/Event/EventTrait.php</file>
@@ -76,6 +76,7 @@
       <file>test/IO/Request/StageTrait.php</file>
       <file>test/IO/Response/ContentTrait.php</file>
       <file>test/IO/Response/HeaderTrait.php</file>
+      <file>test/IO/Response/PageTrait.php</file>
       <file>test/IO/Response/ResponseTrait.php</file>
       <file>test/IO/Response/RestTrait.php</file>
       <file>test/IO/Response/StatusTrait.php</file>
@@ -114,6 +115,10 @@
       <file>test/Async/Promise.php</file>
       <file>test/Async/AsyncTrait.php</file>
     </testsuite>
+    <testsuite name="OAuth Test Suite">
+      <file>test/OAuth/OAuth1.php</file>
+      <file>test/OAuth/OAuth2.php</file>
+    </testsuite>
   </testsuites>
 
   <coverage processUncoveredFiles="false" pathCoverage="true">
@@ -146,6 +151,7 @@
       <file>src/Async/map/noop.php</file>
       <file>src/Async/map/shutdown.php</file>
       <file>src/Async/map/socket.php</file>
+      <file>src/Terminal/map.php</file>
     </exclude>
   </coverage>
 </phpunit>

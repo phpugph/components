@@ -102,6 +102,7 @@ trait HttpTrait
       return true;
     }
 
+    // @codeCoverageIgnoreStart
     //we need to also check the PHP headers
     foreach (headers_list() as $header) {
       //if there was a redirect set
@@ -109,6 +110,7 @@ trait HttpTrait
         return true;
       }
     }
+    // @codeCoverageIgnoreEnd
 
     //no redirect was found
     return false;

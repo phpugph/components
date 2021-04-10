@@ -21,9 +21,9 @@ class Data_DataTrait_Test extends TestCase
   protected function setUp(): void
   {
     $this->object = new DataTraitStub;
-		
-		$this->object->setDot('foo', 'bar');
-		$this->object->setDot('bar', 'foo');
+
+    $this->object->setDot('foo', 'bar');
+    $this->object->setDot('bar', 'foo');
   }
 
   /**
@@ -32,6 +32,29 @@ class Data_DataTrait_Test extends TestCase
    */
   protected function tearDown(): void
   {
+  }
+
+  /**
+   * @covers UGComponents\Data\DataTrait::copy
+   */
+  public function testOffsetCopy()
+  {
+    $this->object->copy('foo', 'zoo');
+    $actual = $this->object->get('zoo');
+    $this->assertEquals('bar', $actual);
+
+    $this->object->copy('foobar', 'zoo');
+    $actual = $this->object->get('zoo');
+    $this->assertNull($actual);
+  }
+
+  /**
+   * @covers UGComponents\Data\DataTrait::purge
+   */
+  public function testOffsetPurge()
+  {
+    $this->object->purge();
+    $this->assertEmpty($this->object->get());
   }
 
   /**
@@ -49,7 +72,7 @@ class Data_DataTrait_Test extends TestCase
   public function testOffsetGet()
   {
     $actual = $this->object->offsetGet('foo');
-		$this->assertEquals('bar', $actual);
+    $this->assertEquals('bar', $actual);
   }
 
   /**
@@ -58,8 +81,8 @@ class Data_DataTrait_Test extends TestCase
   public function testOffsetSet()
   {
     $this->object->offsetSet('zoo', 2);
-		
-		$this->assertEquals(2, $this->object->offsetGet('zoo'));
+
+    $this->assertEquals(2, $this->object->offsetGet('zoo'));
   }
 
   /**
@@ -67,8 +90,8 @@ class Data_DataTrait_Test extends TestCase
    */
   public function testOffsetUnset()
   {
-		$this->object->offsetUnset('foo');
-		$this->assertNull($this->object->offsetGet('foo'));
+    $this->object->offsetUnset('foo');
+    $this->assertNull($this->object->offsetGet('foo'));
   }
 
   /**
@@ -77,7 +100,7 @@ class Data_DataTrait_Test extends TestCase
   public function testCurrent()
   {
     $actual = $this->object->current();
-  	$this->assertEquals('bar', $actual);
+    $this->assertEquals('bar', $actual);
   }
 
   /**
@@ -86,7 +109,7 @@ class Data_DataTrait_Test extends TestCase
   public function testKey()
   {
     $actual = $this->object->key();
-  	$this->assertEquals('foo', $actual);
+    $this->assertEquals('foo', $actual);
   }
 
   /**
@@ -94,9 +117,9 @@ class Data_DataTrait_Test extends TestCase
    */
   public function testNext()
   {
-		$this->object->next();
+    $this->object->next();
     $actual = $this->object->current();
-  	$this->assertEquals('foo', $actual);
+    $this->assertEquals('foo', $actual);
   }
 
   /**
@@ -104,9 +127,9 @@ class Data_DataTrait_Test extends TestCase
    */
   public function testRewind()
   {
-		$this->object->rewind();
+    $this->object->rewind();
     $actual = $this->object->current();
-  	$this->assertEquals('bar', $actual);
+    $this->assertEquals('bar', $actual);
   }
 
   /**
@@ -138,7 +161,7 @@ class Data_DataTrait_Test extends TestCase
    */
   public function testIsDot()
   {
-		$this->assertTrue($this->object->isDot('bar'));
+    $this->assertTrue($this->object->isDot('bar'));
   }
 
   /**
@@ -146,8 +169,8 @@ class Data_DataTrait_Test extends TestCase
    */
   public function testRemoveDot()
   {
-		$this->object->removeDot('foo');
-		$this->assertFalse($this->object->isDot('foo'));
+    $this->object->removeDot('foo');
+    $this->assertFalse($this->object->isDot('foo'));
   }
 
   /**
@@ -155,7 +178,7 @@ class Data_DataTrait_Test extends TestCase
    */
   public function testSetDot()
   {
-		$this->object->setDot('zoo', 2);
+    $this->object->setDot('zoo', 2);
     $this->assertEquals(2, $this->object->getDot('zoo'));
   }
 
@@ -165,11 +188,11 @@ class Data_DataTrait_Test extends TestCase
   public function test__callData()
   {
     $instance = $this->object->__callData('setZoo', array(2));
-		$this->assertInstanceOf('UGComponents\Data\DataTraitStub', $instance);
-		
+    $this->assertInstanceOf('UGComponents\Data\DataTraitStub', $instance);
+
     $actual = $this->object->__callData('getZoo', array());
-		
-		$this->assertEquals(2, $actual);
+
+    $this->assertEquals(2, $actual);
   }
 
   /**
@@ -178,7 +201,7 @@ class Data_DataTrait_Test extends TestCase
   public function test__getData()
   {
     $actual = $this->object->__getData('foo');
-		$this->assertEquals('bar', $actual);
+    $this->assertEquals('bar', $actual);
   }
 
   /**
@@ -188,8 +211,8 @@ class Data_DataTrait_Test extends TestCase
   {
     $this->object->__setData('zoo', 2);
     $actual = $this->object->__getData('zoo');
-		
-		$this->assertEquals(2, $actual);
+
+    $this->assertEquals(2, $actual);
   }
 
   /**
@@ -197,10 +220,10 @@ class Data_DataTrait_Test extends TestCase
    */
   public function test__toStringData()
   {
-		$this->assertEquals(json_encode([
-			'foo' => 'bar',
-			'bar' => 'foo'
-		], JSON_PRETTY_PRINT), $this->object->__toStringData());
+    $this->assertEquals(json_encode([
+      'foo' => 'bar',
+      'bar' => 'foo'
+    ], JSON_PRETTY_PRINT), $this->object->__toStringData());
   }
 
   /**
@@ -209,14 +232,23 @@ class Data_DataTrait_Test extends TestCase
   public function testGenerator()
   {
     foreach($this->object->generator() as $i => $value);
-		
-		$this->assertEquals('bar', $i);
+
+    $this->assertEquals('bar', $i);
   }
 }
 
 if(!class_exists('UGComponents\Data\DataTraitStub')) {
-	class DataTraitStub
-	{
-		use DataTrait;
-	}
+  class DataTraitStub
+  {
+    use DataTrait, DotTrait;
+    public function get(...$args)
+    {
+      if (count($args) === 0) {
+        return $this->data;
+      }
+
+      $separator = '--'. md5(uniqid()) . '--';
+      return $this->getDot(implode($separator, $args), $separator);
+    }
+  }
 }

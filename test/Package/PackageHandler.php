@@ -62,4 +62,23 @@ class Package_PackageHandler_Test extends TestCase
     $actual = $this->object->getBootstrapFileName();
     $this->assertEquals('bootstrap', $actual);
   }
+
+  /**
+   * covers UGComponents\Package\PackageTrait::register
+   * covers UGComponents\Package\PackageTrait::package
+   */
+  public function testRegister()
+  {
+    //pseudo
+    $instance = $this->object->register('foobar')->package('foobar');
+    $this->assertInstanceOf(Package::class, $instance);
+
+    //root
+    $instance = $this->object->register('/foo/bar')->package('/foo/bar');
+    $this->assertInstanceOf(Package::class, $instance);
+
+    //vendor
+    $instance = $this->object->register('foo/bar')->package('foo/bar');
+    $this->assertInstanceOf(Package::class, $instance);
+  }
 }

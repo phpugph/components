@@ -165,6 +165,11 @@ abstract class AbstractOAuth2
   protected $urlResource = null;
 
   /**
+   * @var Closure|null $map The actual curl callback
+   */
+  protected $map = null;
+
+  /**
    * Set auth to auto approve
    *
    * @return OAuth2
@@ -216,6 +221,7 @@ abstract class AbstractOAuth2
    * @return array
    */
   abstract public function getAccessTokens(string $code): array;
+
   /**
    * Returns the generated login url
    *

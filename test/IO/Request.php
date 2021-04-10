@@ -67,6 +67,18 @@ class IO_Request_Test extends TestCase
   }
 
   /**
+   * @covers UGComponents\IO\AbstractIO::__set
+   * @covers UGComponents\IO\AbstractIO::__get
+   */
+  public function test__SetGet()
+  {
+    $this->object->__set('foo', 'bar');
+
+    $this->assertEquals('bar', $this->object->__get('foo'));
+    $this->assertNull($this->object->__get('bar'));
+  }
+
+  /**
    * @covers UGComponents\IO\Request::load
    */
   public function testLoad()

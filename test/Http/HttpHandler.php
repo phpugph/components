@@ -51,9 +51,21 @@ class Http_HttpHandler_Test extends TestCase
 
   /**
    * @covers UGComponents\Http\HttpTrait::run
+   * @covers UGComponents\Http\HttpTrait::main
+   * @covers UGComponents\Http\HttpTrait::hasRedirect
    */
   public function testRun()
   {
+    try {
+      (new HttpHandler)->run(true);
+    } catch(HttpException $e) {
+      $this->assertEquals('404 Not Found', $e->getMessage());
+    }
+
+    $handler = new HttpHandler;
+    $handler->getResponse()->addHeader('Location', '/foo');
+    $handler->run(true);
+
     $this->object->getResponse()->setContent('foobar');
     $actual = $this->object->run(true);
     $this->assertTrue($actual);

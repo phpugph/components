@@ -90,6 +90,18 @@ class Terminal_Helper_Test extends TestCase
 
     $actual = TerminalHelper::parseArgs(['arg1=1']);
     $this->assertEquals('1', $actual['arg1']);
+
+    $args = '__query=foo=bar';
+    $actual = TerminalHelper::parseArgs(explode(' ', $args));
+    $this->assertEquals('bar', $actual['foo']);
+
+    $args = '__json={"foo":"bar"}';
+    $actual = TerminalHelper::parseArgs(explode(' ', $args));
+    $this->assertEquals('bar', $actual['foo']);
+
+    $args = '__json64=\'' . base64_encode('{"foo":"bar"}') . '\'';
+    $actual = TerminalHelper::parseArgs(explode(' ', $args));
+    $this->assertEquals('bar', $actual['foo']);
   }
 
   /**

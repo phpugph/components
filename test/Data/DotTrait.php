@@ -53,6 +53,7 @@ class Data_DotTrait_Test extends TestCase
   public function testIsDot()
   {
     $this->assertTrue($this->object->isDot('bar'));
+    $this->assertFalse($this->object->isDot('foo.bar.zoo'));
     $this->assertTrue($this->object->isDot('bar.zoo'));
     $this->assertFalse($this->object->isDot(''));
   }
@@ -64,6 +65,9 @@ class Data_DotTrait_Test extends TestCase
   {
     $instance = $this->object->removeDot('');
     $this->assertInstanceOf('UGComponents\Data\DotTraitStub', $instance);
+
+    $this->object->removeDot('foo.bar.zoo');
+    $this->assertFalse($this->object->isDot('foo.bar.zoo'));
 
     $this->object->removeDot('foo');
     $this->assertFalse($this->object->isDot('foo'));

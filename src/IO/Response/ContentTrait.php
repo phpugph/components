@@ -47,16 +47,12 @@ trait ContentTrait
    */
   public function setContent($content)
   {
-    if (!is_scalar($content)) {
-      $content = json_encode($content, JSON_PARTIAL_OUTPUT_ON_ERROR|JSON_PRETTY_PRINT);
-    }
-
-    if (is_bool($content)) {
-      $content = $content ? '1': '0';
-    }
-
     if (is_null($content)) {
       $content = '';
+    } else if (!is_scalar($content)) {
+      $content = json_encode($content, JSON_PARTIAL_OUTPUT_ON_ERROR|JSON_PRETTY_PRINT);
+    } else if (is_bool($content)) {
+      $content = $content ? '1': '0';
     }
 
     return $this->set('body', $content);

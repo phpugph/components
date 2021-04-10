@@ -35,7 +35,7 @@ class IO_Response_ContentTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\ContentTrait::getContent
+   * @covers UGComponents\IO\Response\ContentTrait::getContent
    */
   public function testGetContent()
   {
@@ -44,7 +44,7 @@ class IO_Response_ContentTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\ContentTrait::hasContent
+   * @covers UGComponents\IO\Response\ContentTrait::hasContent
    */
   public function testHasContent()
   {
@@ -52,7 +52,7 @@ class IO_Response_ContentTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Response\ContentTrait::setContent
+   * @covers UGComponents\IO\Response\ContentTrait::setContent
    */
   public function testSetContent()
   {

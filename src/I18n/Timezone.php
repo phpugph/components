@@ -287,7 +287,9 @@ class Timezone
       return $difference . ' ' . $relative . ($difference === 1 ? '' : 's') . $suffix;
     }
 
+    // @codeCoverageIgnoreStart
     return date($default, $this->time);
+    // @codeCoverageIgnoreEnd
   }
 
   /**
@@ -408,7 +410,9 @@ class Timezone
         return ($hour+$minute) * ($add?1:-1);
     }
 
+    // @codeCoverageIgnoreStart
     return 0;
+    // @codeCoverageIgnoreEnd
   }
 
   /**

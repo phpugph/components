@@ -154,9 +154,11 @@ class CurlHandler implements ArrayAccess
    */
   public function __construct(Closure $map = null)
   {
+    // @codeCoverageIgnoreStart
     if (is_null(self::$mapCache)) {
       self::$mapCache = include(__DIR__ . '/map.php');
     }
+    // @codeCoverageIgnoreEnd
 
     $this->map = self::$mapCache;
 

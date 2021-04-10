@@ -162,6 +162,11 @@ abstract class AbstractOAuth1
   protected $urlRequest = null;
 
   /**
+   * @var Closure|null $map The actual curl callback
+   */
+  protected $map = null;
+
+  /**
    * Sets request headers
    *
    * @param *string $key
@@ -355,7 +360,7 @@ abstract class AbstractOAuth1
    */
   protected function getHmacPlainTextSignature(): string
   {
-    return $this->consumerSecret . '&' . $this->tokenSecret;
+    return $this->consumerSecret . '&' . $this->requestSecret;
   }
 
   /**
@@ -510,7 +515,7 @@ abstract class AbstractOAuth1
     $url = $this->url;
 
     //set curl
-    $curl = CurlHandler::i()
+    $curl = CurlHandler::i($this->map)
       ->verifyHost(false)
       ->verifyPeer(false);
 
@@ -625,21 +630,21 @@ abstract class AbstractOAuth1
     }
 
     // Separate single string into an array of "key=value" strings
-    $keyvalue = explode('&', $query_string);
+    $keyvalue = explode('&', $string);
     // Separate each "key=value" string into an array[key] = value
     foreach ($keyvalue as $pair) {
       list($k, $v) = explode('=', $pair, 2);
 
       // Handle the case where multiple values map to the same key
       // by pulling those values into an array themselves
-      if (isset($query_array[$k])) {
+      if (isset($array[$k])) {
         // If the existing value is a scalar, turn it into an array
-        if (is_scalar($query_array[$k])) {
-          $query_array[$k] = [ $query_array[$k] ];
+        if (is_scalar($array[$k])) {
+          $array[$k] = [ $array[$k] ];
         }
-        array_push($query_array[$k], $v);
+        array_push($array[$k], $v);
       } else {
-        $query_array[$k] = $v;
+        $array[$k] = $v;
       }
     }
 

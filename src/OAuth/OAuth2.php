@@ -10,6 +10,8 @@ namespace UGComponents\OAuth;
 
 use UGComponents\Curl\CurlHandler;
 
+use Closure;
+
 /**
  * OAuth 2 implementation
  *
@@ -27,6 +29,8 @@ class OAuth2 extends AbstractOAuth2 implements OAuth2Interface
    * @param *string $urlRedirect
    * @param *string $urlRequest
    * @param *string $urlAccess
+   * @param *string $urlResource
+   * @param Closure $map
    */
   public function __construct(
     string $clientId,
@@ -34,7 +38,8 @@ class OAuth2 extends AbstractOAuth2 implements OAuth2Interface
     string $urlRedirect,
     string $urlRequest,
     string $urlAccess,
-    string $urlResource
+    string $urlResource,
+    Closure $map = null
   ) {
     $this->clientId = $clientId;
     $this->clientSecret = $clientSecret;
@@ -42,6 +47,7 @@ class OAuth2 extends AbstractOAuth2 implements OAuth2Interface
     $this->urlRequest = $urlRequest;
     $this->urlAccess = $urlAccess;
     $this->urlResource = $urlResource;
+    $this->map = $map;
   }
 
   /**
@@ -68,7 +74,7 @@ class OAuth2 extends AbstractOAuth2 implements OAuth2Interface
     }
 
     //set curl
-    $result = CurlHandler::i()
+    $result = CurlHandler::i($this->map)
       ->setUrl($this->urlAccess)
       ->verifyHost(false)
       ->verifyPeer(false)
@@ -133,7 +139,7 @@ class OAuth2 extends AbstractOAuth2 implements OAuth2Interface
   public function get(array $query): array
   {
     // send request
-    $result = CurlHandler::i()
+    $result = CurlHandler::i($this->map)
       ->setUrl($this->urlResource . '?' . http_build_query($query))
       ->setCustomRequest('GET')
       ->getJsonResponse();

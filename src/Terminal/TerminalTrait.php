@@ -94,6 +94,8 @@ trait TerminalTrait
       return false;
     }
 
+    // @codeCoverageIgnoreStart
+    //not testable
     //check for content
     $request = $this->getRequest();
     if ($response->getStatus() === 200
@@ -119,5 +121,6 @@ trait TerminalTrait
     }
 
     return $this->shutdown();
+    // @codeCoverageIgnoreEnd
   }
 }

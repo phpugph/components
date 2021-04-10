@@ -70,7 +70,7 @@ class IO_Request_StageTrait_Test extends TestCase
   {
     $instance = $this->object->setSoftStage(array(
       'foo' => 'bar',
-      'bar' => 'zoo'
+      'bar22' => 'zoo'
     ));
 
     $this->assertInstanceOf('UGComponents\IO\Request\StageTraitStub', $instance);

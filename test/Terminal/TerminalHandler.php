@@ -51,14 +51,13 @@ class Terminal_TerminalHandler_Test extends TestCase
 
   /**
    * @covers UGComponents\Terminal\TerminalTrait::run
+   * @covers UGComponents\Terminal\TerminalTrait::main
    */
   public function testRun()
   {
-    $this->object->getRequest()->setArgs(['foo', 'test', 'foo=bar']);
+    $this->object->getRequest()->setArgs(['bin', 'test', 'foo=bar']);
     $actual = $this->object->run(true);
     $this->assertFalse($actual);
-
-    return;
 
     $this->object->on('test', function ($request, $response) {
       $response->setError(true, 'not sure');
@@ -82,10 +81,34 @@ class Terminal_TerminalHandler_Test extends TestCase
     $this->assertFalse($actual);
 
     $this->object = new TerminalHandler;
-    $this->object->getRequest()->setArgs('test foo=bar');
+    $this->object->getRequest()->setArgs(['bin', 'test', 'foo=bar']);
     $this->object->on('test', function ($request, $response) {});
 
     $actual = $this->object->run(true);
-    $this->assertTrue($actual);
+    $this->assertFalse($actual);
+
+    $this->object = new TerminalHandler;
+    $this->object->getRequest()->setArgs(['bin', 'test', 'foo=bar']);
+    $this->object->on('test', function ($request, $response) {
+      return false;
+    });
+
+    $actual = $this->object->run(true);
+    $this->assertFalse($actual);
+
+    $this->object = new TerminalHandler;
+    $this->object->getRequest()->setArgs(['bin', 'test', 'foo=bar']);
+
+    $actual = $this->object->run(true);
+    $this->assertFalse($actual);
+
+    $this->object = new TerminalHandler;
+    $this->object->getRequest()->setArgs(['bin']);
+
+    try {
+      $this->object->run(true);
+    } catch (TerminalException $e) {
+      $this->assertEquals('Not enough arguments.', $e->getMessage());
+    }
   }
 }

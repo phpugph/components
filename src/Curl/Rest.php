@@ -112,8 +112,10 @@ class Rest extends Model
       return $this;
     }
 
+    // @codeCoverageIgnoreStart
     //let the parent handle the rest
     return parent::__call($name, $args);
+    // @codeCoverageIgnoreEnd
   }
 
   /**
@@ -309,9 +311,11 @@ class Rest extends Model
       case CurlHandler::ENCODE_JSON:
         $response = $request->getJsonResponse(); // get the json response
         break;
+      // @codeCoverageIgnoreStart
       case CurlHandler::ENCODE_XML:
         $response = $request->getSimpleXmlResponse(); // get the xml response
         break;
+      // @codeCoverageIgnoreEnd
       case CurlHandler::ENCODE_RAW:
       default:
         $response = $request->getResponse(); // get the raw response

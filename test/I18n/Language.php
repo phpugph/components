@@ -78,6 +78,9 @@ class I18n_Language_Test extends TestCase
 
     $string = $this->object->translate('How are you??');
     $this->assertEquals('How are you??', $string);
+
+    $string = $this->object->translate('How are you %s ??', 'sir');
+    $this->assertEquals('How are you sir ??', $string);
   }
 
   /**
@@ -87,6 +90,18 @@ class I18n_Language_Test extends TestCase
   {
     $language = $this->object->getLanguage();
     $this->assertArrayHasKey('How are you?', $language);
+  }
+
+  /**
+   * @covers UGComponents\I18n\Language::setLanguage
+   */
+  public function testSetLanguage()
+  {
+    $actual = $this->object->setLanguage([]);
+    $this->assertInstanceOf('UGComponents\I18n\Language', $actual);
+
+    $actual = $this->object->setLanguage(__DIR__.'/../assets/language/tagalog.php');
+    $this->assertInstanceOf('UGComponents\I18n\Language', $actual);
   }
 
   /**

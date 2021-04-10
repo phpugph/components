@@ -444,6 +444,7 @@ class Promise implements PromiseInterface
 
     //if the return value is a Promise
     if ($value instanceof Promise) {
+      // @codeCoverageIgnoreStart
       //we need to wait for the value before continuing
       $fulfill = function ($value) use ($queue) {
         //set the value
@@ -458,6 +459,7 @@ class Promise implements PromiseInterface
         //continue to settle
         $this->settle(static::STATUS_REJECTED, $queue);
       };
+      // @codeCoverageIgnoreEnd
 
       $value->then($fulfill, $reject);
 

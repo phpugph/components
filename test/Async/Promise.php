@@ -480,4 +480,30 @@ class Async_Promise_Test extends TestCase
     $test->assertNull($error);
     $test->assertTrue($called);
   }
+
+  /**
+   * @covers UGComponents\Async\Promise::settle
+   */
+  public function testSettle()
+  {
+    $test = $this;
+    $handler = new AsyncHandler('noop');
+
+    $promise = Promise::i(function($fulfill, $reject) {
+      $fulfill(1);
+    }, $handler);
+
+    $promise->then(function ($x) {
+      return $x + 1;
+    })->finally(function ($x) use ($handler) {
+      return Promise::i(function($fulfill, $reject) {
+        $fulfill(1);
+      }, $handler);
+    })->then(function ($x) use ($test) {
+      $test->assertEquals(1, $x);
+      return $x + 1;
+    });
+
+    $handler->run();
+  }
 }

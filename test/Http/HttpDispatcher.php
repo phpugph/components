@@ -111,6 +111,21 @@ class Http_HttpDispatcher_Test extends TestCase
 
     $actual = $this->object->dispatch($this->response);
     $this->assertInstanceOf('UGComponents\Http\HttpDispatcher', $actual);
+
+    $this->response = new Response;
+
+    $this->response
+      ->load()
+      ->addHeader('Content-Type', false)
+      ->setContent('Foobar');
+
+    $this->object->__construct(
+      function() {},
+      function() {}
+    );
+
+    $actual = $this->object->dispatch($this->response);
+    $this->assertInstanceOf('UGComponents\Http\HttpDispatcher', $actual);
   }
 
   /**
