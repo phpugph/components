@@ -48,4 +48,4 @@ contribute to.
 [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) before making a pull request.
 2. Push your code to your remote forked version.
 3. Go back to your forked version on GitHub and submit a pull request.
-4. All pull requests will be passed to [Travis CI](https://travis-ci.org/phpugph/components) to be tested. Also note that [Coveralls](https://coveralls.io/github/phpugph/components) is also used to analyze the coverage of your contribution.
+4. All pull requests will be passed to [Travis CI](https://travis-ci.com/github/phpugph/components) to be tested. Also note that [Coveralls](https://coveralls.io/github/phpugph/components) is also used to analyze the coverage of your contribution.
