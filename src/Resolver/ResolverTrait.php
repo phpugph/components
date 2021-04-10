@@ -47,8 +47,10 @@ trait ResolverTrait
     if ($handler->canResolve($name)) {
       //is it shared ?
       if ($handler->isShared($name)) {
-        //resolve the shared
+        // @codeCoverageIgnoreStart
+        //resolve the shared (experimental)
         return $this->resolveShared($name, ...$args);
+        // @codeCoverageIgnoreEnd
       }
 
       //resolve it the regular way

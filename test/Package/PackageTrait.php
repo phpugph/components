@@ -3,6 +3,7 @@
 namespace UGComponents\Package;
 
 use StdClass;
+use UGComponents\Resolver\ResolverTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -37,7 +38,9 @@ class Frame_PackageTrait_Test extends TestCase
    */
   public function testGetPackages()
   {
+    $this->object->register('foobar');
     $this->assertTrue(is_array($this->object->getPackages()));
+    $this->assertInstanceOf(Package::class, $this->object->getPackages('foobar'));
   }
 
   /**
@@ -63,10 +66,12 @@ class Frame_PackageTrait_Test extends TestCase
 
     $trigger = false;
     try {
-      $this->object->package('barfoo');
+      $this->object->package('barfoo222');
     } catch(PackageException $e) {
       $trigger = true;
     }
+
+    $this->assertTrue($trigger);
 
     $instance = $this->object->__invokePackage('foobar');
     $this->assertInstanceOf(Package::class, $instance);
@@ -98,5 +103,6 @@ class Frame_PackageTrait_Test extends TestCase
 if(!class_exists('UGComponents\Frame\PackageTraitStub')) {
   class PackageTraitStub extends PackageHandler
   {
+    use ResolverTrait;
   }
 }

@@ -80,7 +80,7 @@ class HttpDispatcher implements DispatcherInterface
    * Starts to process the request
    *
    * @param ResponseInterface $response The response object to evaluate
-   * @param bool        $emulate  If you really want it to echo (for testing)
+   * @param bool              $emulate  If you really want it to echo (for testing)
    *
    * @return array with request and response inside
    */
@@ -116,7 +116,7 @@ class HttpDispatcher implements DispatcherInterface
    * output. Then of course, output it
    *
    * @param ResponseInterface $response The response object to evaluate
-   * @param bool        $emulate  If you really want it to echo (for testing)
+   * @param bool              $emulate  If you really want it to echo (for testing)
    *
    * @return HttpHandler
    */
@@ -145,9 +145,9 @@ class HttpDispatcher implements DispatcherInterface
   /**
    * Browser redirect
    *
-   * @param *string $path  Where to redirect to
-   * @param bool  $force Whether if you want to exit immediately
-   * @param bool  $emulate  If you really want it to redirect (for testing)
+   * @param *string $path    Where to redirect to
+   * @param bool    $force   Whether if you want to exit immediately
+   * @param bool    $emulate If you really want it to redirect (for testing)
    *
    * @return HttpDispatcher
    */

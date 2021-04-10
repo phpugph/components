@@ -39,14 +39,14 @@ trait PackageTrait
   /**
    * Returns all the packages
    *
-   * @param string|null $name Name of package
+   * @param string|null $vendor Name of package
    *
    * @return array
    */
-  public function getPackages(string $name = null)
+  public function getPackages(string $vendor = null)
   {
-    if (isset($this->packages[$name])) {
-      return $this->packages[$name];
+    if (isset($this->packages[$vendor])) {
+      return $this->packages[$vendor];
     }
 
     return $this->packages;
@@ -73,9 +73,13 @@ trait PackageTrait
    */
   public function package(string $vendor)
   {
-    if (!array_key_exists($vendor, $this->packages)) {
+    // @codeCoverageIgnoreStart
+    //i tested and verified that coverage does go
+    //through here, but it's not reported that it did...
+    if (!isset($this->packages[$vendor])) {
       throw PackageException::forPackageNotFound($vendor);
     }
+    // @codeCoverageIgnoreEnd
 
     return $this->packages[$vendor];
   }
@@ -100,11 +104,13 @@ trait PackageTrait
       $bootstrap = $this->getBootstrapFileName();
     }
 
+    // @codeCoverageIgnoreStart
     //if still no bootstrap file name defined
     if (is_null($bootstrap)) {
       //set it to something at least...
       $bootstrap = 'bootstrap';
     }
+    // @codeCoverageIgnoreEnd
 
     //determine class
     if (method_exists($this, 'resolve')) {

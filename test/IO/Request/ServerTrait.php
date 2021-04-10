@@ -139,6 +139,22 @@ class IO_Request_ServerTrait_Test extends TestCase
   }
 
   /**
+   * covers UGComponents\IO\Request\ServerTrait::setHost
+   */
+  public function testSetHost()
+  {
+    $instance = $this->object->setServer(array(
+      'REQUEST_URI' => '/foo/bar?foo=bar',
+      'REQUEST_METHOD' => 'GET',
+      'QUERY_STRING' => 'foo=bar'
+    ));
+
+    $instance = $this->object->setHost('https');
+
+    $this->assertInstanceOf('UGComponents\IO\Request\ServerTraitStub', $instance);
+  }
+
+  /**
    * covers UGComponents\IO\Request\ServerTrait::setServer
    */
   public function testSetServer()

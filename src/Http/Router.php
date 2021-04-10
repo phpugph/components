@@ -77,11 +77,6 @@ class Router implements RouterInterface
     callable $callback,
     int $priority = 0
   ): RouterInterface {
-    //hard requirement
-    if (!is_callable($callback)) {
-      throw HttpException::forInvalidRouteCallback();
-    }
-
     if (strtoupper($method) === 'ALL') {
       $method = '[a-zA-Z0-9]+';
     }

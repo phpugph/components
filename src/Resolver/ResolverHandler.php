@@ -75,11 +75,6 @@ class ResolverHandler implements ResolverInterface
    */
   public function register(string $name, callable $callback): ResolverInterface
   {
-    //if it's not callable
-    if (!is_callable($callback)) {
-      throw ResolverException::forInvalidCallback();
-    }
-
     $this->registry[$name] = $callback;
     return $this;
   }

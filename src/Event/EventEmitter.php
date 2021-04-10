@@ -79,10 +79,12 @@ class EventEmitter implements EventInterface
     foreach ($matches as $match) {
       $event = $match['pattern'];
 
+      // @codeCoverageIgnoreStart
       //if no direct observers
       if (!isset($this->observers[$event])) {
         continue;
       }
+      // @codeCoverageIgnoreEnd
 
       //add args on to match
       $match['args'] = $args;
@@ -293,12 +295,6 @@ class EventEmitter implements EventInterface
    */
   protected function unbindByEvent(string $event, callable $callback): EventInterface
   {
-    //if event isn't set
-    if (!isset($this->observers[$event])) {
-      //do nothing
-      return $this;
-    }
-
     //'foobar' => array(
     foreach ($this->observers[$event] as $i => $observer) {
       //0 => callback

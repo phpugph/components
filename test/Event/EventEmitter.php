@@ -57,6 +57,7 @@ class Event_EventEmitter_Test extends TestCase
     $this->assertNull($trigger->success);
 
     $this->object->unbind();
+    $this->object->unbind('barfoo');
 
     $this->assertNull($trigger->success);
 

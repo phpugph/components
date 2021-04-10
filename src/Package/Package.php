@@ -96,7 +96,7 @@ class Package
       return $results;
     }
 
-    throw PackageException::forMethodNotFound($name);
+    throw PackageException::forMethodNotFound($this->name, $name);
   }
 
   /**

@@ -29,7 +29,7 @@ class Image_ImageHandler_Test extends TestCase
    */
   protected function tearDown(): void
   {
-		$this->object->__destruct();
+    $this->object->__destruct();
   }
 
   /**
@@ -37,28 +37,28 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function test__destruct()
   {
-		$this->object->__destruct();
+    $this->object->__destruct();
 
-		$this->assertNull($this->object->getResource());
+    $this->assertNull($this->object->getResource());
   }
 
   /**
    * @covers UGComponents\Image\ImageHandler::__construct
-	 * @covers UGComponents\Image\ImageHandler::createResource
+   * @covers UGComponents\Image\ImageHandler::createResource
    */
   public function test__construct()
   {
-		$actual = $this->object->__construct(__DIR__.'/../assets/image/foobar.png', 'png');
-		$this->assertNull($actual);
-		$this->object->__destruct();
-		$actual = $this->object->__construct(__DIR__.'/../assets/image/foobar.gif', 'gif');
-		$this->assertNull($actual);
-		$this->object->__destruct();
-		$actual = $this->object->__construct(__DIR__.'/../assets/image/foobar.jpg', 'jpg');
-		$this->assertNull($actual);
-		$this->object->__destruct();
-		$actual = $this->object->__construct(__DIR__.'/../assets/image/foobar.wbmp', 'bmp');
-		$this->assertNull($actual);
+    $actual = $this->object->__construct(__DIR__.'/../assets/image/foobar.png', 'png');
+    $this->assertNull($actual);
+    $this->object->__destruct();
+    $actual = $this->object->__construct(__DIR__.'/../assets/image/foobar.gif', 'gif');
+    $this->assertNull($actual);
+    $this->object->__destruct();
+    $actual = $this->object->__construct(__DIR__.'/../assets/image/foobar.jpg', 'jpg');
+    $this->assertNull($actual);
+    $this->object->__destruct();
+    $actual = $this->object->__construct(__DIR__.'/../assets/image/foobar.wbmp', 'bmp');
+    $this->assertNull($actual);
   }
 
   /**
@@ -66,36 +66,36 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function test__toString()
   {
-		$actual = base64_encode($this->object->__toString());
-		$this->assertTrue(!!strlen($actual));
+    $actual = base64_encode($this->object->__toString());
+    $this->assertTrue(!!strlen($actual));
 
     $object = new ImageHandler(__DIR__.'/../assets/image/foobar.gif', 'gif');
     $actual = base64_encode($object->__toString());
-		$this->assertTrue(!!strlen($actual));
+    $this->assertTrue(!!strlen($actual));
 
     $object = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png', true, 9);
     $actual = base64_encode($object->__toString());
-		$this->assertTrue(!!strlen($actual));
+    $this->assertTrue(!!strlen($actual));
 
     $object = new ImageHandler(__DIR__.'/../assets/image/foobar.wbmp', 'bmp');
     $actual = base64_encode($object->__toString());
-		$this->assertTrue(!!strlen($actual));
+    $this->assertTrue(!!strlen($actual));
 
     $object = new ImageHandler(__DIR__.'/../assets/image/foobar.wbmp', 'wbmp');
     $actual = base64_encode($object->__toString());
-		$this->assertTrue(!!strlen($actual));
+    $this->assertTrue(!!strlen($actual));
 
     $object = new ImageHandler(__DIR__.'/../assets/image/foobar.jpg', 'jpg');
     $actual = base64_encode($object->__toString());
-		$this->assertTrue(!!strlen($actual));
+    $this->assertTrue(!!strlen($actual));
 
     $object = new ImageHandler(__DIR__.'/../assets/image/foobar.jpg', 'jpeg');
     $actual = base64_encode($object->__toString());
-		$this->assertTrue(!!strlen($actual));
+    $this->assertTrue(!!strlen($actual));
 
     $object = new ImageHandler(__DIR__.'/../assets/image/foobar.jpg', 'pjpeg');
     $actual = base64_encode($object->__toString());
-		$this->assertTrue(!!strlen($actual));
+    $this->assertTrue(!!strlen($actual));
   }
 
   /**
@@ -103,8 +103,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testBlur()
   {
-		$instance = $this->object->blur();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->blur();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -112,8 +112,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testBrightness()
   {
-		$instance = $this->object->brightness(10);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->brightness(10);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -121,8 +121,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testColorize()
   {
-		$instance = $this->object->colorize(255, 0, 0);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->colorize(255, 0, 0);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -130,32 +130,66 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testContrast()
   {
-		$instance = $this->object->contrast(10);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->contrast(10);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
    * @covers UGComponents\Image\ImageHandler::crop
+   * @covers UGComponents\Image\ImageHandler::getHeightAspectRatio
+   * @covers UGComponents\Image\ImageHandler::getWidthAspectRatio
    */
   public function testCrop()
   {
-		$instance = $this->object->crop(10);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop(10);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->crop();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->crop(200, 200);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop(5, 5);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->crop(5, 5);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop(6, 3);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->crop(300, 200);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop(3, 6);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->crop(200, 300);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop(700, 5);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
+
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop(5, 700);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
+
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop(200, 200);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
+
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop(300, 200);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
+
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->crop(200, 300);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
   }
 
   /**
@@ -163,8 +197,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testEdgedetect()
   {
-		$instance = $this->object->edgedetect();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->edgedetect();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -172,8 +206,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testEmboss()
   {
-		$instance = $this->object->emboss();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->emboss();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -181,8 +215,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testGaussianBlur()
   {
-		$instance = $this->object->gaussianBlur();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->gaussianBlur();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -190,8 +224,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testGetDimensions()
   {
-		$actual = $this->object->getDimensions();
-		$this->assertTrue(is_array($actual));
+    $actual = $this->object->getDimensions();
+    $this->assertTrue(is_array($actual));
   }
 
   /**
@@ -199,9 +233,9 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testGetResource()
   {
-		$resource = $this->object->getResource();
+    $resource = $this->object->getResource();
 
-		$this->assertTrue(imagesx($resource) > 0);
+    $this->assertTrue(imagesx($resource) > 0);
   }
 
   /**
@@ -209,8 +243,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testGreyscale()
   {
-		$instance = $this->object->greyscale();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->greyscale();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -218,11 +252,11 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testInvert()
   {
-		$instance = $this->object->invert();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->invert();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
 
-		$instance = $this->object->invert(true);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->invert(true);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -230,8 +264,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testMeanRemoval()
   {
-		$instance = $this->object->meanRemoval();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->meanRemoval();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -239,34 +273,66 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testNegative()
   {
-		$instance = $this->object->negative();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->negative();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
    * @covers UGComponents\Image\ImageHandler::resize
-	 * @covers UGComponents\Image\ImageHandler::getHeightAspectRatio
-	 * @covers UGComponents\Image\ImageHandler::getWidthAspectRatio
+   * @covers UGComponents\Image\ImageHandler::getHeightAspectRatio
+   * @covers UGComponents\Image\ImageHandler::getWidthAspectRatio
    */
   public function testResize()
   {
-		$instance = $this->object->resize(10, 10);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize(10, 10);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->resize();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->resize(200, 200);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize(5, 5);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->resize(5, 5);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize(6, 3);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->resize(300, 200);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize(3, 6);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
 
-		$instance = $this->object->resize(200, 300);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize(700, 5);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
+
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize(5, 700);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
+
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize(200, 200);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
+
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize(300, 200);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
+
+    $handler = new ImageHandler(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance = $handler->resize(200, 300);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $handler->__destruct();
   }
 
   /**
@@ -274,8 +340,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testRotate()
   {
-		$instance = $this->object->rotate(10);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->rotate(10);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -283,23 +349,23 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testScale()
   {
-		$instance = $this->object->scale(10, 10);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->scale(10, 10);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
 
-		$instance = $this->object->scale();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->scale();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
 
-		$instance = $this->object->scale(200, 200);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->scale(200, 200);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
 
-		$instance = $this->object->scale(5, 5);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->scale(5, 5);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
 
-		$instance = $this->object->scale(300, 200);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->scale(300, 200);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
 
-		$instance = $this->object->scale(200, 300);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->scale(200, 300);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -307,8 +373,8 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testSetTransparency()
   {
-		$instance = $this->object->setTransparency();
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->setTransparency();
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
@@ -316,33 +382,44 @@ class Image_ImageHandler_Test extends TestCase
    */
   public function testSmooth()
   {
-		$instance = $this->object->smooth(10);
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $this->object->smooth(10);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
   }
 
   /**
+   * @covers UGComponents\Image\ImageHandler::save
+   * @covers UGComponents\Image\ImageHandler::save
    * @covers UGComponents\Image\ImageHandler::save
    */
   public function testSave()
   {
     $instance = $this->object->save('/tmp/foobar.png', 'png');
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
 
-		$gif = new ImageHandler(__DIR__.'/../assets/image/foobar.gif', 'gif');
-		$jpg = new ImageHandler(__DIR__.'/../assets/image/foobar.jpg', 'jpg');
-		$bmp = new ImageHandler(__DIR__.'/../assets/image/foobar.wbmp', 'bmp');
+    $gif = new ImageHandler(__DIR__.'/../assets/image/foobar.gif', 'gif');
+    $jpg = new ImageHandler(__DIR__.'/../assets/image/foobar.jpg', 'jpg');
+    $bmp = new ImageHandler(__DIR__.'/../assets/image/foobar.wbmp', 'bmp');
 
-		$instance = $gif->save('/tmp/foobar.gif', 'gif');
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
-		$gif->__destruct();
+    $instance = $gif->save('/tmp/foobar.gif', 'gif');
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $gif->__destruct();
 
-		$instance = $jpg->save('/tmp/foobar.jpg', 'jpg');
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
-		$jpg->__destruct();
+    $instance = $jpg->save('/tmp/foobar.jpg', 'jpg');
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $jpg->__destruct();
 
-		$instance = $bmp->save('/tmp/foobar.wbmp', 'bmp');
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
-		$bmp->__destruct();
+    $instance = $bmp->save('/tmp/foobar.wbmp', 'bmp');
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $instance = $bmp->save('/tmp/foobar.png');
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $bmp->__destruct();
+
+    $gif = new ImageHandler(file_get_contents(__DIR__.'/../assets/image/foobar.png'), 'png', false, 1);
+    $instance = $gif->save('/tmp/foobar.png');
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance);
+    $gif->__destruct();
+
+
   }
 
   /**
@@ -352,10 +429,10 @@ class Image_ImageHandler_Test extends TestCase
   {
     $instance1 = ImageHandler::i(__DIR__.'/../assets/image/foobar.png', 'png');
 
-		$this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance1);
+    $this->assertInstanceOf('UGComponents\Image\ImageHandler', $instance1);
 
-		$instance2 = ImageHandler::i(__DIR__.'/../assets/image/foobar.png', 'png');
+    $instance2 = ImageHandler::i(__DIR__.'/../assets/image/foobar.png', 'png');
 
-		$this->assertTrue($instance1 !== $instance2);
+    $this->assertTrue($instance1 !== $instance2);
   }
 }

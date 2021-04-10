@@ -20,17 +20,17 @@ use UGComponents\Helper\InstanceTrait;
 class ImageHandler
 {
   use InstanceTrait;
-     
+
   /**
    * @var [RESOURCE] $resource The GD Resource
    */
   protected $resource = null;
-     
+
   /**
    * @var int $width The width of the image for meta
    */
   protected $width = 0;
-     
+
   /**
    * @var int $height The height of the image for meta
    */
@@ -621,7 +621,7 @@ class ImageHandler
     #imagegif() - Output image to browser or file
     #imagewbmp() - Output image to browser or file
     #imagejpeg() - Output image to browser or file
-    
+
     if (!$type) {
       $type = $this->type;
     }
@@ -644,8 +644,10 @@ class ImageHandler
         imagewbmp($this->resource, $path, $this->quality);
         break;
       case 'jpg':
+      // @codeCoverageIgnoreStart
       case 'jpeg':
       case 'pjpeg':
+      // @codeCoverageIgnoreEnd
       default:
         imagejpeg($this->resource, $path, $this->quality);
         break;
@@ -664,11 +666,13 @@ class ImageHandler
    */
   protected function createResource($data, $path)
   {
+    // @codeCoverageIgnoreStart
     //if the GD Library is not installed
     if (!function_exists('gd_info')) {
       //throw error
       throw ImageException::forGDNotInstalled();
     }
+    // @codeCoverageIgnoreEnd
 
     # imagecreatefromgd — Create a new image from GD file or URL
     # imagecreatefromgif — Create a new image from file or URL
@@ -688,9 +692,11 @@ class ImageHandler
     //depending on the extension lets load
     //the file using the right GD loader
     switch ($this->type) {
+      // @codeCoverageIgnoreStart
       case 'gd':
         $resource = imagecreatefromgd($data);
         break;
+      // @codeCoverageIgnoreEnd
       case 'gif':
         $resource = imagecreatefromgif($data);
         break;

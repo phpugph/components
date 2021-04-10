@@ -69,6 +69,10 @@ class IO_IOHandler_Test extends TestCase
 
   /**
    * @covers UGComponents\IO\IOTrait::run
+   * @covers UGComponents\IO\IOTrait::prepare
+   * @covers UGComponents\IO\IOTrait::process
+   * @covers UGComponents\IO\IOTrait::shutdown
+   * @covers UGComponents\IO\IOTrait::setProcessor
    */
   public function testRun()
   {

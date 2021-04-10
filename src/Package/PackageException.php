@@ -32,7 +32,7 @@ class PackageException extends Exception
   /**
    * @const ERROR_METHOD_NOT_FOUND Error template
    */
-  const ERROR_METHOD_NOT_FOUND = 'No method named %s was found';
+  const ERROR_METHOD_NOT_FOUND = 'No method named %s was found in package %s';
 
   /**
    * @const string ERROR_PACKAGE_NOT_FOUND Error template
@@ -66,13 +66,16 @@ class PackageException extends Exception
   /**
    * Create a new exception for invalid method
    *
+   * @param *string $vendor
    * @param *string $name
    *
    * @return PackageException
    */
-  public static function forMethodNotFound(string $name): PackageException
-  {
-    return new static(sprintf(static::ERROR_METHOD_NOT_FOUND, $name));
+  public static function forMethodNotFound(
+    string $vendor,
+    string $name
+  ): PackageException {
+    return new static(sprintf(static::ERROR_METHOD_NOT_FOUND, $name, $vendor));
   }
 
   /**

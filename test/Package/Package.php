@@ -43,6 +43,13 @@ class Package_Package_Test extends TestCase
     $actual = $this->object->__call('foo', array());
     $this->assertEquals('bar', $actual);
 
+    $this->object->addMethod('zoo', function() {
+      return $this;
+    });
+
+    $actual = $this->object->__call('zoo', array());
+    $this->assertEquals($this->object, $actual);
+
     $trigger = false;
     try {
       $actual = $this->object->__call('bar', array());
@@ -84,6 +91,8 @@ class Package_Package_Test extends TestCase
     $this->object->__construct(new PackageHandler, 'foo');
     $actual = $this->object->getPackagePath();
     $this->assertFalse($actual);
+    $actual = $this->object->getPackagePath();
+    $this->assertFalse($actual);
   }
 
   /**
@@ -110,8 +119,9 @@ class Package_Package_Test extends TestCase
    */
   public function testMapPackageMethods()
   {
+    $map = new MapStub('test');
     //foo/bar
-    $this->object->mapPackageMethods(new \Exception('test'));
+    $this->object->mapPackageMethods($map);
     $actual = $this->object->getMessage();
     $this->assertEquals('test', $actual);
 
@@ -119,7 +129,46 @@ class Package_Package_Test extends TestCase
       return 'override';
     });
 
-    $actual = $this->object->getMessage();
+    $this->object->addMethod('getThis', function() {
+      return $this;
+    });
+
+    $actual = $this->object->getMap()->getThis()->getMessage();
     $this->assertEquals('override', $actual);
+  }
+
+  /**
+   * @covers UGComponents\Package\Package::getPackageHandler
+   */
+  public function testGetPackageHandler()
+  {
+    $handler = new PackageHandler;
+    $package = new Package($handler, 'foo/bar');
+    $actual = $this->object->getPackageHandler();
+    $this->assertEquals($handler, $actual);
+  }
+
+  /**
+   * @covers UGComponents\Package\Package::getPackageMap
+   */
+  public function testGetPackageMap()
+  {
+    $actual = $this->object->getPackageMap();
+    $this->assertEquals('', $actual);
+  }
+}
+
+class MapStub
+{
+  public $message = null;
+  public function __construct($message) {
+    $this->message = $message;
+  }
+  public function getMap() {
+    return $this;
+  }
+
+  public function getMessage() {
+    return $this->message;
   }
 }

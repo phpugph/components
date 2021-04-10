@@ -139,7 +139,12 @@ class Curl_Rest_Test extends TestCase
    */
   public function testSend()
   {
-    $actual = $this->object
+    $rest1 = new Rest('http://foobar.com', function($options) {
+      $options['response'] = json_encode($options);
+      return $options;
+    });
+
+    $actual = $rest1
       ->setUserAgent('Mozilla')
       ->setRequestFormat('query')
       ->setResponseFormat('json')
@@ -151,7 +156,12 @@ class Curl_Rest_Test extends TestCase
     $this->assertEquals('DELETE', $actual[CURLOPT_CUSTOMREQUEST]);
     $this->assertEquals('http://foobar.com/friends/comments?bar=zoo&foo=bar', $actual[CURLOPT_URL]);
 
-    $actual = $this->object
+    $rest2 = new Rest('http://foobar.com', function($options) {
+      $options['response'] = json_encode($options);
+      return $options;
+    });
+
+    $actual = $rest2
       ->setUserAgent('Mozilla')
       ->setRequestFormat('query')
       ->setResponseFormat('json')
@@ -161,6 +171,59 @@ class Curl_Rest_Test extends TestCase
       ->send('PUT', '/friends/comments');
 
     $this->assertEquals('PUT', $actual[CURLOPT_CUSTOMREQUEST]);
+    $this->assertEquals('http://foobar.com/friends/comments?foo=bar', $actual[CURLOPT_URL]);
+    $this->assertEquals('bar=zoo', $actual[CURLOPT_POSTFIELDS]);
+
+    $rest3 = new Rest('http://foobar.com', function($options) {
+      $options['response'] = json_encode($options);
+      return $options;
+    });
+
+    $actual = $rest3
+      ->setUserAgent('Mozilla')
+      ->setRequestFormat('json')
+      ->setResponseFormat('json')
+      ->addHeader('Expect')
+      ->addQuery('foo', 'bar')
+      ->setBar('zoo')
+      ->send('POST', '/friends/comments');
+
+    $this->assertEquals('http://foobar.com/friends/comments?foo=bar', $actual[CURLOPT_URL]);
+    $this->assertEquals('{"bar":"zoo"}', $actual[CURLOPT_POSTFIELDS]);
+
+    $rest4 = new Rest('http://foobar.com', function($options) {
+      $options['response'] = json_encode(array_values($options));
+      return $options;
+    });
+
+    $actual = $rest4
+      ->setUserAgent('Mozilla')
+      ->setRequestFormat('query')
+      ->setResponseFormat('raw')
+      ->addHeader('Expect')
+      ->addQuery('foo', 'bar')
+      ->setBar('zoo')
+      ->send('POST', '/friends/comments');
+
+    $this->assertEquals(
+      '["http:\/\/foobar.com\/friends\/comments?foo=bar",10,true,60,false,"Mozilla","bar=zoo",["Expect"],true]',
+      $actual
+    );
+
+    $rest5 = new Rest('http://foobar.com', function($options) {
+      $options['response'] = http_build_query($options);
+      return $options;
+    });
+
+    $actual = $rest5
+      ->setUserAgent('Mozilla')
+      ->setRequestFormat('query')
+      ->setResponseFormat('query')
+      ->addHeader('Expect')
+      ->addQuery('foo', 'bar')
+      ->setBar('zoo')
+      ->send('POST', '/friends/comments');
+
     $this->assertEquals('http://foobar.com/friends/comments?foo=bar', $actual[CURLOPT_URL]);
     $this->assertEquals('bar=zoo', $actual[CURLOPT_POSTFIELDS]);
   }

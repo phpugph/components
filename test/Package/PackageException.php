@@ -71,12 +71,12 @@ class Package_Exception_Test extends TestCase
     $message = null;
 
     try {
-      throw PackageException::forMethodNotFound('foobar');
+      throw PackageException::forMethodNotFound('foo', 'bar');
     } catch(PackageException $e) {
       $message = $e->getMessage();
     }
 
-    $this->assertEquals('No method named foobar was found', $message);
+    $this->assertEquals('No method named bar was found in package foo', $message);
   }
 
   /**

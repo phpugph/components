@@ -89,6 +89,7 @@ class I18n_Timezone_Test extends TestCase
 
   /**
    * @covers UGComponents\I18n\Timezone::getGMT
+   * @covers UGComponents\I18n\Timezone::getUtcParts
    */
   public function testGetGMT()
   {
@@ -212,12 +213,13 @@ class I18n_Timezone_Test extends TestCase
     $class = new Timezone('Asia/Macau', time() + (60 * 60 * 25));
     $this->assertEquals('Tomorrow', $class->toRelative(time() - $offset));
 
-    // $class = new Timezone('Asia/Macau', time() + (60 * 60 * 25));
-    // $this->assertEquals('Tomorrow', $class->toRelative(time()));
+    $class = new Timezone('Asia/Macau', strtotime('1981-12-18 12:00:00'));
+    $this->assertEquals('December 18, 1981', $class->toRelative());
   }
 
   /**
    * @covers UGComponents\I18n\Timezone::setTime
+   * @covers UGComponents\I18n\Timezone::setTimezone
    */
   public function testSetTime()
   {
@@ -230,6 +232,12 @@ class I18n_Timezone_Test extends TestCase
     $instance = $this
       ->object
       ->setTime('January 21, 2013 8:28AM');
+
+    $this->assertInstanceOf('UGComponents\I18n\Timezone', $instance);
+
+    $instance = $this
+      ->object
+      ->setTimezone('Asia/Macau');
 
     $this->assertInstanceOf('UGComponents\I18n\Timezone', $instance);
   }

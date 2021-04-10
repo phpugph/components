@@ -33,10 +33,6 @@ trait LoggerTrait
    */
   public function addLogger(callable $callback)
   {
-    if (!is_callable($callback)) {
-      throw LoggerException::forInvalidCallback();
-    }
-
     if ($callback instanceof Closure) {
       $callback = $callback->bindTo($this, get_class($this));
     }
