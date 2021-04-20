@@ -8,6 +8,8 @@
 
 namespace UGComponents\Package;
 
+use Closure;
+
 /**
  * Package space for package methods
  *
@@ -53,11 +55,6 @@ class Package
   protected $path = null;
 
   /**
-   * @var ?object $map An object map for methods
-   */
-  protected $map = null;
-
-  /**
    * Store the name so we can profile later
    *
    * @param *PackageHandler $handler
@@ -84,12 +81,11 @@ class Package
   {
     //use closure methods first
     if (isset($this->methods[$name])) {
-      return call_user_func_array($this->methods[$name], $args);
-    }
-
-    if (!is_null($this->map) && is_callable([$this->map, $name])) {
-      $results = call_user_func_array([$this->map, $name], $args);
-      if ($results instanceof $this->map) {
+      $results = call_user_func_array($this->methods[$name], $args);
+      if (is_array($this->methods[$name])
+        && isset($this->methods[$name][0])
+        && $results instanceof $this->methods[$name][0]
+      ) {
         return $this;
       }
 
@@ -107,9 +103,13 @@ class Package
    *
    * @return Package
    */
-  public function addMethod(string $name, callable $callback): Package
+  public function addPackageMethod(string $name, callable $callback): Package
   {
-    $this->methods[$name] = $callback->bindTo($this, get_class($this));
+    if ($callback instanceof Closure) {
+      $callback = $callback->bindTo($this, get_class($this));
+    }
+
+    $this->methods[$name] = $callback;
     return $this;
   }
 
@@ -128,9 +128,9 @@ class Package
    *
    * @return ?object
    */
-  public function getPackageMap()
+  public function getPackageMethods()
   {
-    return $this->map;
+    return $this->methods;
   }
 
   /**
@@ -190,12 +190,15 @@ class Package
   /**
    * Sets an object map for method calling
    *
+   * @param *object $map
+   * @param bool    $overwrite
+   *
    * @return string
    */
-  public function mapPackageMethods($map): Package
+  public function mapPackageMethods(object $map, $overwrite = false): Package
   {
-    if (is_object($map)) {
-      $this->map = $map;
+    foreach (get_class_methods($map) as $method) {
+      $this->addPackageMethod($method, [$map, $method]);
     }
 
     return $this;
