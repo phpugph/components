@@ -17,10 +17,12 @@ use UGComponents\Profiler\LoggerTrait;
 
 use UGComponents\Resolver\StateTrait;
 
+use UGComponents\IO\Request\CookieTrait;
+use UGComponents\IO\Request\SessionTrait;
+
 use UGComponents\IO\Response\ResponseInterface;
 use UGComponents\IO\Response\ContentTrait;
 use UGComponents\IO\Response\HeaderTrait;
-use UGComponents\IO\Response\PageTrait;
 use UGComponents\IO\Response\RestTrait;
 use UGComponents\IO\Response\StatusTrait;
 
@@ -35,8 +37,9 @@ class Response extends AbstractIO implements ResponseInterface, IOInterface
 {
   use ContentTrait,
     HeaderTrait,
-    PageTrait,
     RestTrait,
+    CookieTrait,
+    SessionTrait,
     StatusTrait;
 
   /**
@@ -46,6 +49,16 @@ class Response extends AbstractIO implements ResponseInterface, IOInterface
    */
   public function load(): IOInterface
   {
+    if (isset($_COOKIE)) {
+      $this->setCookies($_COOKIE);
+    }
+
+    // @codeCoverageIgnoreStart
+    if (isset($_SESSION)) {
+      $this->setSession($_SESSION);
+    }
+    // @codeCoverageIgnoreEnd
+
     $this
       ->addHeader('Content-Type', 'text/html; charset=utf-8')
       ->setStatus(200, '200 OK');
