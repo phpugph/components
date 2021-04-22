@@ -19,9 +19,9 @@ class Terminal_Helper_Test extends TestCase
   {
     $test = new StdClass();
     $test->results = false;
-    TerminalHelper::setMap(function ($output) use ($test) {
+    TerminalHelper::setMap(function ($output, $color) use ($test) {
       if($test->results === false) {
-        $test->results = $output;
+        $test->results = sprintf($color, $output);
       }
     });
 
@@ -38,9 +38,9 @@ class Terminal_Helper_Test extends TestCase
   {
     $test = new StdClass();
     $test->results = false;
-    TerminalHelper::setMap(function ($output) use ($test) {
+    TerminalHelper::setMap(function ($output, $color) use ($test) {
       if($test->results === false) {
-        $test->results = $output;
+        $test->results = sprintf($color, $output);
       }
     });
 
@@ -112,9 +112,9 @@ class Terminal_Helper_Test extends TestCase
   {
     $test = new StdClass();
     $test->results = false;
-    TerminalHelper::setMap(function ($output) use ($test) {
+    TerminalHelper::setMap(function ($output, $color) use ($test) {
       if($test->results === false) {
-        $test->results = $output;
+        $test->results = sprintf($color, $output);
       }
     });
 
@@ -131,9 +131,9 @@ class Terminal_Helper_Test extends TestCase
   {
     $test = new StdClass();
     $test->results = false;
-    TerminalHelper::setMap(function ($output) use ($test) {
+    TerminalHelper::setMap(function ($output, $color) use ($test) {
       if($test->results === false) {
-        $test->results = $output;
+        $test->results = sprintf($color, $output);
       }
     });
 
@@ -150,9 +150,9 @@ class Terminal_Helper_Test extends TestCase
   {
     $test = new StdClass();
     $test->results = false;
-    TerminalHelper::setMap(function ($output) use ($test) {
+    TerminalHelper::setMap(function ($output, $color) use ($test) {
       if($test->results === false) {
-        $test->results = $output;
+        $test->results = sprintf($color, $output);
       }
     });
 

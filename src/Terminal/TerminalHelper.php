@@ -106,10 +106,6 @@ class TerminalHelper
    */
   public static function output($message, $color = null)
   {
-    if (is_string($color)) {
-      $message = sprintf($color, $message);
-    }
-
     // @codeCoverageIgnoreStart
     //not testable
     if (is_null(self::$map)) {
@@ -117,7 +113,7 @@ class TerminalHelper
     }
     // @codeCoverageIgnoreEnd
 
-    call_user_func(self::$map, $message);
+    call_user_func(self::$map, $message, $color);
   }
 
   /**
