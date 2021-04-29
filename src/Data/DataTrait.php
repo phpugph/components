@@ -37,19 +37,24 @@ trait DataTrait
    *
    * @param *string $source
    * @param *string $destination
+   * @param string  $separator
    *
    * @return DataTrait
    */
-  public function copy(string $source, string $destination)
-  {
+  public function copy(
+    string $source,
+    string $destination,
+    string $separator = '.'
+  ) {
     //if there is a source key in the data
-    if (isset($this->data[$source])) {
+    if ($this->isDot($source, $separator)) {
       //send it over to the destiination
-      $this->data[$destination] = $this->data[$source];
+      $value = $this->getDot($source, $separator);
+      $this->setDot($destination, $value, $separator);
     //if the destination exists
-    } else if (isset($this->data[$destination])) {
+    } else if ($this->isDot($destination, $separator)) {
       //the source doesnt exist, so set it to null
-      $this->data[$destination] = null;
+      $this->setDot($destination, null, $separator);
     }
 
     //if the source and destination does not exist, do nothing
