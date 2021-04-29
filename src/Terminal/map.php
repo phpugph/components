@@ -7,6 +7,10 @@
  */
 
 //echos aren't testable
-return function ($output) {
-  print $output;
+return function ($message, $color = null) {
+  if (is_string($color)) {
+    $message = sprintf($color, $message);
+  }
+
+  print $message;
 };

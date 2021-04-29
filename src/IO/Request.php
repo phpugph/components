@@ -40,14 +40,14 @@ class Request extends AbstractIO implements RequestInterface, IOInterface
 {
   use CliTrait,
     ContentTrait,
-    CookieTrait,
     FileTrait,
     GetTrait,
     PostTrait,
     RouteTrait,
     ServerTrait,
-    SessionTrait,
-    StageTrait;
+    StageTrait,
+    CookieTrait,
+    SessionTrait;
 
   /**
    * Loads default data given by PHP

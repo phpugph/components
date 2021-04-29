@@ -36,14 +36,14 @@ class Package_Package_Test extends TestCase
    */
   public function test__call()
   {
-    $this->object->addMethod('foo', function() {
+    $this->object->addPackageMethod('foo', function() {
       return 'bar';
     });
 
     $actual = $this->object->__call('foo', array());
     $this->assertEquals('bar', $actual);
 
-    $this->object->addMethod('zoo', function() {
+    $this->object->addPackageMethod('zoo', function() {
       return $this;
     });
 
@@ -61,11 +61,11 @@ class Package_Package_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Package\Package::addMethod
+   * @covers UGComponents\Package\Package::addPackageMethod
    */
-  public function testAddMethod()
+  public function testaddPackageMethod()
   {
-    $this->object->addMethod('foo', function() {
+    $this->object->addPackageMethod('foo', function() {
       return 'bar';
     });
 
@@ -125,11 +125,11 @@ class Package_Package_Test extends TestCase
     $actual = $this->object->getMessage();
     $this->assertEquals('test', $actual);
 
-    $this->object->addMethod('getMessage', function() {
+    $this->object->addPackageMethod('getMessage', function() {
       return 'override';
     });
 
-    $this->object->addMethod('getThis', function() {
+    $this->object->addPackageMethod('getThis', function() {
       return $this;
     });
 
@@ -149,12 +149,12 @@ class Package_Package_Test extends TestCase
   }
 
   /**
-   * @covers UGComponents\Package\Package::getPackageMap
+   * @covers UGComponents\Package\Package::getPackageMethods
    */
-  public function testGetPackageMap()
+  public function testGetPackageMethods()
   {
-    $actual = $this->object->getPackageMap();
-    $this->assertEquals('', $actual);
+    $actual = $this->object->getPackageMethods();
+    $this->assertEmpty($actual);
   }
 }
 

@@ -76,7 +76,6 @@
       <file>test/IO/Request/StageTrait.php</file>
       <file>test/IO/Response/ContentTrait.php</file>
       <file>test/IO/Response/HeaderTrait.php</file>
-      <file>test/IO/Response/PageTrait.php</file>
       <file>test/IO/Response/ResponseTrait.php</file>
       <file>test/IO/Response/RestTrait.php</file>
       <file>test/IO/Response/StatusTrait.php</file>

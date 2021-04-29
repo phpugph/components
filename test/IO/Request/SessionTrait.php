@@ -22,7 +22,7 @@ class IO_Request_SessionTrait_Test extends TestCase
   protected function setUp(): void
   {
     $this->object = new SessionTraitStub;
-    
+
     $this->object->set('session', array(
       'foo' => 'bar',
       'bar' => 'foo'
@@ -38,7 +38,7 @@ class IO_Request_SessionTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Request\SessionTrait::getSession
+   * @covers UGComponents\IO\Request\SessionTrait::getSession
    */
   public function testGetSession()
   {
@@ -46,7 +46,7 @@ class IO_Request_SessionTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Request\SessionTrait::hasSession
+   * @covers UGComponents\IO\Request\SessionTrait::hasSession
    */
   public function testHasSession()
   {
@@ -55,7 +55,7 @@ class IO_Request_SessionTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Request\SessionTrait::removeSession
+   * @covers UGComponents\IO\Request\SessionTrait::removeSession
    */
   public function testRemoveSession()
   {
@@ -64,7 +64,7 @@ class IO_Request_SessionTrait_Test extends TestCase
   }
 
   /**
-   * covers UGComponents\IO\Request\SessionTrait::setSession
+   * @covers UGComponents\IO\Request\SessionTrait::setSession
    */
   public function testSetSession()
   {

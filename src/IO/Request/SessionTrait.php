@@ -36,17 +36,29 @@ trait SessionTrait
    *
    * @return SessionTrait
    */
+  public function referenceSession(&$session)
+  {
+    $this->data['session'] = &$session;
+    return $this;
+  }
+
+  /**
+   * Removes $_SESSION given name or all $_SESSION
+   *
+   * @param mixed ...$args
+   *
+   * @return SessionTrait
+   */
   public function removeSession(...$args)
   {
-    $results = $this->remove('session', ...$args);
-
     // @codeCoverageIgnoreStart
-    if (isset($_SESSION)) {
-      $_SESSION = $this->get('session');
+    if (empty($args) && isset($_SESSION)) {
+      $_SESSION = [];
+      return $this->remove('session');
     }
     // @codeCoverageIgnoreEnd
 
-    return $results;
+    return $this->remove('session', ...$args);
   }
 
   /**
@@ -73,12 +85,17 @@ trait SessionTrait
   {
     if (is_array($data)) {
       // @codeCoverageIgnoreStart
-      if (isset($_SESSION) && $data !== $_SESSION) {
-        $_SESSION = $data;
+      if (isset($_SESSION) && $data === $_SESSION) {
+        return $this->referenceSession($_SESSION);
       }
       // @codeCoverageIgnoreEnd
 
-      return $this->set('session', $data);
+      //dont hard set session or we will lose the reference
+      foreach ($data as $key => $value) {
+        $this->set('session', $key, $value);
+      }
+
+      return $this;
     }
 
     if (count($args) === 0) {
