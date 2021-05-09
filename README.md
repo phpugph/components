@@ -18,14 +18,14 @@ composer install phpugph/components
 ## Components
 
  - Curl - cURL wrapper class that helps making cUrl calls easier
- - Data - Manages data structs of all kinds. Models, Collections and Registry objects are covered here
- - Event - Similar to JavaScript Events. Covers basic and wildcard events.
- - Helper - Miscellaneous traits used to add class features
+ - [Data](./docs/data.md) - Manages data structs of all kinds. Models, Collections and Registry objects are covered here
+ - [Event](./docs/event.md) - Similar to JavaScript Events. Covers basic and wildcard events.
+ - [Helper](./docs/helper.md) - Miscellaneous traits used to add class features
  - Http - Deals with Routers, Request, Response and Middleware
  - i18n - Covers Language translations and timezone conversions
  - Image - Dynamic Image processor
- - Profiler - Assists with troubleshooting code
- - Resolver - IoC to manage dependency injections
+ - [Profiler](./docs/profiler.md) - Assists with troubleshooting code
+ - [Resolver](./docs/resolver.md) - IoC to manage dependency injections
 
 ----
 
