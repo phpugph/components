@@ -58,9 +58,10 @@ trait HttpTrait
       $this->processor = [$this, 'main'];
     }
 
-    $continue = $this->prepare()
-      && $response->getStatus() == 200
-      && $this->process();
+    $continue = $this->prepare();
+    if ($continue && $response->getStatus() == 200) {
+      $continue = $this->process();
+    }
 
     if (!$continue) {
       return false;
