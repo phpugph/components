@@ -249,8 +249,10 @@ class Rest extends Model
           $data = json_encode($data);
           break;
         case CurlHandler::ENCODE_QUERY:
-        default:
           $data = http_build_query($data);
+          break;
+        case CurlHandler::ENCODE_RAW:
+        default:
           break;
       }
     //it's a get or delete
