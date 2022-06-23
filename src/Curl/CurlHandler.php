@@ -258,7 +258,7 @@ class CurlHandler implements ArrayAccess
    *
    * @return bool
    */
-  public function offsetExists($offset)
+  public function offsetExists($offset): bool
   {
     if (is_string($offset)) {
       //if it doesn't have a CURL prefix
@@ -281,7 +281,7 @@ class CurlHandler implements ArrayAccess
    *
    * @return mixed
    */
-  public function offsetGet($offset)
+  public function offsetGet($offset): mixed
   {
     if (is_string($offset)) {
       //if it doesn't have a CURL prefix
@@ -303,7 +303,7 @@ class CurlHandler implements ArrayAccess
    * @param *scalar|null $offset
    * @param mixed    $value
    */
-  public function offsetSet($offset, $value)
+  public function offsetSet($offset, $value): void
   {
     if (is_string($offset)) {
       //if it doesn't have a CURL prefix
@@ -326,7 +326,7 @@ class CurlHandler implements ArrayAccess
    *
    * @param *scalar|null $offset The key to unset
    */
-  public function offsetUnset($offset)
+  public function offsetUnset($offset): void
   {
     if (is_string($offset)) {
       //if it doesn't have a CURL prefix

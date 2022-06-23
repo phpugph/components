@@ -93,17 +93,17 @@ class ImageHandler
           $quality = 9;
         }
 
-        imagepng($this->resource, null, $quality);
+        imagepng($this->resource, null, floor($quality));
         break;
       case 'bmp':
       case 'wbmp':
-        imagewbmp($this->resource, null, $this->quality);
+        imagewbmp($this->resource, null, floor($this->quality));
         break;
       case 'jpg':
       case 'jpeg':
       case 'pjpeg':
       default:
-        imagejpeg($this->resource, null, $this->quality);
+        imagejpeg($this->resource, null, floor($this->quality));
         break;
     }
 
@@ -287,7 +287,17 @@ class ImageHandler
     }
 
     //render the image
-    imagecopyresampled($crop, $this->resource, 0, 0, $xPosition, $yPosition, $width, $height, $orgWidth, $orgHeight);
+    imagecopyresampled(
+      $crop, 
+      $this->resource, 
+      0, 0, 
+      floor($xPosition), 
+      floor($yPosition), 
+      floor($width), 
+      floor($height), 
+      floor($orgWidth), 
+      floor($orgHeight)
+    );
 
     //destroy the original resource
     imagedestroy($this->resource);
@@ -637,11 +647,11 @@ class ImageHandler
           $quality = 9;
         }
 
-        imagepng($this->resource, $path, $quality);
+        imagepng($this->resource, $path, floor($quality));
         break;
       case 'bmp':
       case 'wbmp':
-        imagewbmp($this->resource, $path, $this->quality);
+        imagewbmp($this->resource, $path, floor($this->quality));
         break;
       case 'jpg':
       // @codeCoverageIgnoreStart
@@ -649,7 +659,7 @@ class ImageHandler
       case 'pjpeg':
       // @codeCoverageIgnoreEnd
       default:
-        imagejpeg($this->resource, $path, $this->quality);
+        imagejpeg($this->resource, $path, floor($this->quality));
         break;
     }
 
