@@ -22,7 +22,7 @@ trait IteratorTrait
    * Returns the current item
    * For Iterator interface
    */
-  public function current()
+  public function current(): mixed
   {
     return current($this->data);
   }
@@ -31,7 +31,7 @@ trait IteratorTrait
    * Returns th current position
    * For Iterator interface
    */
-  public function key()
+  public function key(): mixed
   {
     return key($this->data);
   }
@@ -40,7 +40,7 @@ trait IteratorTrait
    * Increases the position
    * For Iterator interface
    */
-  public function next()
+  public function next(): void
   {
     next($this->data);
   }
@@ -49,7 +49,7 @@ trait IteratorTrait
    * Rewinds the position
    * For Iterator interface
    */
-  public function rewind()
+  public function rewind(): void
   {
     reset($this->data);
   }

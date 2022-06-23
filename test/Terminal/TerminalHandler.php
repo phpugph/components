@@ -64,7 +64,7 @@ class Terminal_TerminalHandler_Test extends TestCase
     });
 
     $actual = $this->object->run(true);
-    $this->assertFalse($actual);
+    $this->assertTrue($actual);
 
     $this->object = new TerminalHandler;
 

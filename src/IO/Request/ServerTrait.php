@@ -24,7 +24,7 @@ trait ServerTrait
    */
   public function getMethod()
   {
-    return strtoupper($this->get('method'));
+    return strtoupper((string) $this->get('method'));
   }
 
   /**
@@ -113,7 +113,7 @@ trait ServerTrait
    */
   public function isMethod(string $method): bool
   {
-    return strtoupper($method) === strtoupper($this->get('method'));
+    return strtoupper($method) === strtoupper((string) $this->get('method'));
   }
 
   /**
