@@ -126,7 +126,7 @@ class CurlHandler implements ArrayAccess
    *
    * @return mixed
    */
-  public function __call($name, $args)
+  public function __call(string $name, $args)
   {
     if (strpos($name, 'set') === 0) {
       //'AutoReferer' => CURLOPT_AUTOREFERER,
