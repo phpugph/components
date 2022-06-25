@@ -288,14 +288,15 @@ class ImageHandler
 
     //render the image
     imagecopyresampled(
-      $crop, 
-      $this->resource, 
-      0, 0, 
-      floor($xPosition), 
-      floor($yPosition), 
-      floor($width), 
-      floor($height), 
-      floor($orgWidth), 
+      $crop,
+      $this->resource,
+      0,
+      0,
+      floor($xPosition),
+      floor($yPosition),
+      floor($width),
+      floor($height),
+      floor($orgWidth),
       floor($orgHeight)
     );
 

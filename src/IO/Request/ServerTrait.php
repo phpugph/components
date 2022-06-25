@@ -24,7 +24,7 @@ trait ServerTrait
    */
   public function getMethod()
   {
-    return strtoupper((string) $this->get('method'));
+    return strtoupper($this->get('method') ?? '');
   }
 
   /**
@@ -113,7 +113,7 @@ trait ServerTrait
    */
   public function isMethod(string $method): bool
   {
-    return strtoupper($method) === strtoupper((string) $this->get('method'));
+    return strtoupper($method) === strtoupper($this->get('method') ?? '');
   }
 
   /**
@@ -177,7 +177,7 @@ trait ServerTrait
       $hostpath = substr($hostpath, 0, strpos($hostpath, '?') + 1);
     }
 
-    $hostdir = pathinfo($hostpath, PATHINFO_DIRNAME);
+    $hostdir = pathinfo($hostpath ?? '', PATHINFO_DIRNAME);
 
     $this->setDot('host.protocol', $protocol);
 

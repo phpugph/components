@@ -35,7 +35,7 @@ trait ContentTrait
   public function hasContent(): bool
   {
     $body = $this->get('body');
-    return !is_null($body) && strlen((string) $body);
+    return !is_null($body) && strlen($body);
   }
 
   /**
