@@ -1,126 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-  backupGlobals="false"
-  backupStaticAttributes="false"
-  colors="true"
-  convertErrorsToExceptions="true"
-  convertNoticesToExceptions="true"
-  convertWarningsToExceptions="true"
-  processIsolation="false"
-  stopOnFailure="false"
-  bootstrap="test/bootstrap.php"
+<phpunit 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  backupGlobals="false" 
+  colors="true" 
+  processIsolation="false" 
+  stopOnFailure="false" 
+  bootstrap="test/bootstrap.php" 
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.3/phpunit.xsd" 
+  cacheDirectory=".phpunit.cache" 
+  backupStaticProperties="false"
 >
   <testsuites>
     <testsuite name="Helper Test Suite">
-      <file>test/Helper/BinderTrait.php</file>
-      <file>test/Helper/ConditionalTrait.php</file>
-      <file>test/Helper/InstanceTrait.php</file>
-      <file>test/Helper/LoopTrait.php</file>
-      <file>test/Helper/SingletonTrait.php</file>
+      <file>test/Helper/BinderTraitTest.php</file>
+      <file>test/Helper/ConditionalTraitTest.php</file>
+      <file>test/Helper/InstanceTraitTest.php</file>
+      <file>test/Helper/LoopTraitTest.php</file>
+      <file>test/Helper/SingletonTraitTest.php</file>
     </testsuite>
     <testsuite name="Resolver Test Suite">
-      <file>test/Resolver/ResolverException.php</file>
-      <file>test/Resolver/ResolverHandler.php</file>
-      <file>test/Resolver/ResolverTrait.php</file>
-      <file>test/Resolver/StateTrait.php</file>
+      <file>test/Resolver/ResolverExceptionTest.php</file>
+      <file>test/Resolver/ResolverHandlerTest.php</file>
+      <file>test/Resolver/ResolverTraitTest.php</file>
+      <file>test/Resolver/StateTraitTest.php</file>
     </testsuite>
     <testsuite name="Profiler Test Suite">
-      <file>test/Profiler/CallerTrait.php</file>
-      <file>test/Profiler/InspectorHandler.php</file>
-      <file>test/Profiler/InspectorTrait.php</file>
-      <file>test/Profiler/LoggerTrait.php</file>
+      <file>test/Profiler/CallerTraitTest.php</file>
+      <file>test/Profiler/InspectorHandlerTest.php</file>
+      <file>test/Profiler/InspectorTraitTest.php</file>
+      <file>test/Profiler/LoggerTraitTest.php</file>
     </testsuite>
     <testsuite name="Event Test Suite">
-      <file>test/Event/EventEmitter.php</file>
-      <file>test/Event/EventObserver.php</file>
-      <file>test/Event/EventTrait.php</file>
+      <file>test/Event/EventEmitterTest.php</file>
+      <file>test/Event/EventObserverTest.php</file>
+      <file>test/Event/EventTraitTest.php</file>
     </testsuite>
     <testsuite name="Data Test Suite">
-      <file>test/Data/ArrayAccessTrait.php</file>
-      <file>test/Data/Collection.php</file>
-      <file>test/Data/CountableTrait.php</file>
-      <file>test/Data/DataException.php</file>
-      <file>test/Data/DataTrait.php</file>
-      <file>test/Data/DotTrait.php</file>
-      <file>test/Data/GeneratorTrait.php</file>
-      <file>test/Data/CloneTrait.php</file>
-      <file>test/Data/IteratorTrait.php</file>
-      <file>test/Data/MagicTrait.php</file>
-      <file>test/Data/Model.php</file>
-      <file>test/Data/Registry.php</file>
+      <file>test/Data/ArrayAccessTraitTest.php</file>
+      <file>test/Data/CollectionTest.php</file>
+      <file>test/Data/CountableTraitTest.php</file>
+      <file>test/Data/DataExceptionTest.php</file>
+      <file>test/Data/DataTraitTest.php</file>
+      <file>test/Data/DotTraitTest.php</file>
+      <file>test/Data/GeneratorTraitTest.php</file>
+      <file>test/Data/CloneTraitTest.php</file>
+      <file>test/Data/IteratorTraitTest.php</file>
+      <file>test/Data/MagicTraitTest.php</file>
+      <file>test/Data/ModelTest.php</file>
+      <file>test/Data/RegistryTest.php</file>
     </testsuite>
     <testsuite name="I18n Test Suite">
-      <file>test/I18n/Language.php</file>
-        <file>test/I18n/LanguageException.php</file>
-      <file>test/I18n/Timezone.php</file>
-      <file>test/I18n/TimezoneValidation.php</file>
+      <file>test/I18n/LanguageTest.php</file>
+      <file>test/I18n/LanguageExceptionTest.php</file>
+      <file>test/I18n/TimezoneTest.php</file>
+      <file>test/I18n/TimezoneValidationTest.php</file>
     </testsuite>
     <testsuite name="IO Test Suite">
-      <file>test/IO/IOHandler.php</file>
-      <file>test/IO/Middleware.php</file>
-      <file>test/IO/Request.php</file>
-      <file>test/IO/Response.php</file>
-      <file>test/IO/Middleware/ErrorProcessorTrait.php</file>
-      <file>test/IO/Middleware/PostProcessorTrait.php</file>
-      <file>test/IO/Middleware/PreProcessorTrait.php</file>
-      <file>test/IO/Request/CliTrait.php</file>
-      <file>test/IO/Request/ContentTrait.php</file>
-      <file>test/IO/Request/CookieTrait.php</file>
-      <file>test/IO/Request/FileTrait.php</file>
-      <file>test/IO/Request/GetTrait.php</file>
-      <file>test/IO/Request/PostTrait.php</file>
-      <file>test/IO/Request/RequestTrait.php</file>
-      <file>test/IO/Request/RouteTrait.php</file>
-      <file>test/IO/Request/ServerTrait.php</file>
-      <file>test/IO/Request/SessionTrait.php</file>
-      <file>test/IO/Request/StageTrait.php</file>
-      <file>test/IO/Response/ContentTrait.php</file>
-      <file>test/IO/Response/HeaderTrait.php</file>
-      <file>test/IO/Response/ResponseTrait.php</file>
-      <file>test/IO/Response/RestTrait.php</file>
-      <file>test/IO/Response/StatusTrait.php</file>
+      <file>test/IO/IOHandlerTest.php</file>
+      <file>test/IO/MiddlewareTest.php</file>
+      <file>test/IO/RequestTest.php</file>
+      <file>test/IO/ResponseTest.php</file>
+      <file>test/IO/Middleware/ErrorProcessorTraitTest.php</file>
+      <file>test/IO/Middleware/PostProcessorTraitTest.php</file>
+      <file>test/IO/Middleware/PreProcessorTraitTest.php</file>
+      <file>test/IO/Request/CliTraitTest.php</file>
+      <file>test/IO/Request/ContentTraitTest.php</file>
+      <file>test/IO/Request/CookieTraitTest.php</file>
+      <file>test/IO/Request/FileTraitTest.php</file>
+      <file>test/IO/Request/GetTraitTest.php</file>
+      <file>test/IO/Request/PostTraitTest.php</file>
+      <file>test/IO/Request/RequestTraitTest.php</file>
+      <file>test/IO/Request/RouteTraitTest.php</file>
+      <file>test/IO/Request/ServerTraitTest.php</file>
+      <file>test/IO/Request/SessionTraitTest.php</file>
+      <file>test/IO/Request/StageTraitTest.php</file>
+      <file>test/IO/Response/ContentTraitTest.php</file>
+      <file>test/IO/Response/HeaderTraitTest.php</file>
+      <file>test/IO/Response/ResponseTraitTest.php</file>
+      <file>test/IO/Response/RestTraitTest.php</file>
+      <file>test/IO/Response/StatusTraitTest.php</file>
     </testsuite>
     <testsuite name="Http Test Suite">
-      <file>test/Http/HttpDispatcher.php</file>
-      <file>test/Http/HttpException.php</file>
-      <file>test/Http/HttpHandler.php</file>
-      <file>test/Http/Router.php</file>
-      <file>test/Http/Dispatcher/DispatcherTrait.php</file>
-      <file>test/Http/Router/RouterTrait.php</file>
+      <file>test/Http/HttpDispatcherTest.php</file>
+      <file>test/Http/HttpExceptionTest.php</file>
+      <file>test/Http/HttpHandlerTest.php</file>
+      <file>test/Http/RouterTest.php</file>
+      <file>test/Http/Dispatcher/DispatcherTraitTest.php</file>
+      <file>test/Http/Router/RouterTraitTest.php</file>
     </testsuite>
     <testsuite name="Terminal Test Suite">
-      <file>test/Terminal/TerminalException.php</file>
-      <file>test/Terminal/TerminalHelper.php</file>
-      <file>test/Terminal/TerminalHandler.php</file>
+      <file>test/Terminal/TerminalExceptionTest.php</file>
+      <file>test/Terminal/TerminalHelperTest.php</file>
+      <file>test/Terminal/TerminalHandlerTest.php</file>
     </testsuite>
     <testsuite name="Package Test Suite">
-      <file>test/Package/PackageException.php</file>
-      <file>test/Package/Package.php</file>
-      <file>test/Package/PackageTrait.php</file>
-      <file>test/Package/PackageHandler.php</file>
+      <file>test/Package/PackageExceptionTest.php</file>
+      <file>test/Package/PackageTest.php</file>
+      <file>test/Package/PackageTraitTest.php</file>
+      <file>test/Package/PackageHandlerTest.php</file>
     </testsuite>
     <testsuite name="Curl Test Suite">
-      <file>test/Curl/CurlHandler.php</file>
-      <file>test/Curl/Rest.php</file>
+      <file>test/Curl/CurlHandlerTest.php</file>
+      <file>test/Curl/RestTest.php</file>
     </testsuite>
     <testsuite name="Image Test Suite">
-      <file>test/Image/ImageHandler.php</file>
-      <file>test/Image/ImageException.php</file>
+      <file>test/Image/ImageHandlerTest.php</file>
+      <file>test/Image/ImageExceptionTest.php</file>
     </testsuite>
     <testsuite name="Async Test Suite">
-      <file>test/Async/AsyncException.php</file>
-      <file>test/Async/Coroutine.php</file>
-      <file>test/Async/AsyncHandler.php</file>
-      <file>test/Async/Promise.php</file>
-      <file>test/Async/AsyncTrait.php</file>
+      <file>test/Async/AsyncExceptionTest.php</file>
+      <file>test/Async/CoroutineTest.php</file>
+      <file>test/Async/AsyncHandlerTest.php</file>
+      <file>test/Async/PromiseTest.php</file>
+      <file>test/Async/AsyncTraitTest.php</file>
     </testsuite>
     <testsuite name="OAuth Test Suite">
-      <file>test/OAuth/OAuth1.php</file>
-      <file>test/OAuth/OAuth2.php</file>
+      <file>test/OAuth/OAuth1Test.php</file>
+      <file>test/OAuth/OAuth2Test.php</file>
     </testsuite>
   </testsuites>
-
-  <coverage processUncoveredFiles="false" pathCoverage="true">
+  <coverage pathCoverage="true"/>
+  <source>
     <include>
       <directory suffix=".php">./src</directory>
     </include>
@@ -152,5 +152,5 @@
       <file>src/Async/map/socket.php</file>
       <file>src/Terminal/map.php</file>
     </exclude>
-  </coverage>
+  </source>
 </phpunit>

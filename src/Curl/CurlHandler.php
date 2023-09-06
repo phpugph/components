@@ -481,25 +481,6 @@ class CurlHandler implements ArrayAccess
   }
 
   /**
-   * Sets url parameter
-   *
-   * @param *array|string $key   The parameter name
-   * @param scalar    $value The parameter value
-   *
-   * @return CurlHandler
-   */
-  public function setUrlParameter($key, $value = null)
-  {
-    if (is_array($key)) {
-      $this->param = $key;
-      return $this;
-    }
-
-    $this->param[$key] = $value;
-    return $this;
-  }
-
-  /**
    * Sets CURLOPT_SSL_VERIFYHOST
    *
    * @param bool $on Flag to verify host

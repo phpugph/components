@@ -79,9 +79,6 @@ class Promise implements PromiseInterface
     //set the queue
     $this->queue = new SplQueue();
 
-    //set the catcher
-    $this->catcher = include sprintf('%s/map/noop.php', __DIR__);
-
     //determine the handler
     // @codeCoverageIgnoreStart
     if (is_null($handler)) {

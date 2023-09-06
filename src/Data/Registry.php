@@ -53,6 +53,11 @@ class Registry implements ArrayAccess, Iterator, Countable, RegistryInterface
   }
 
   /**
+   * @var array $data The data collection
+   */
+  protected $data = [];
+
+  /**
    * Attempts to use __callData then __callResolver
    *
    * @param *string $name name of method

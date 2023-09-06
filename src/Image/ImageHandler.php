@@ -29,12 +29,22 @@ class ImageHandler
   /**
    * @var int $width The width of the image for meta
    */
-  protected $width = 0;
+  protected int $width = 0;
 
   /**
    * @var int $height The height of the image for meta
    */
-  protected $height = 0;
+  protected int $height = 0;
+
+  /**
+   * @var int $quality The quality of the image
+   */
+  protected int $quality = 0;
+
+  /**
+   * @var string $type of image (png, jpg, gif, etc)
+   */
+  protected string $type;
 
   /**
    * Pre set the image data

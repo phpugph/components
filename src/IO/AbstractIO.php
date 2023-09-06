@@ -27,8 +27,8 @@ abstract class AbstractIO extends Registry
    */
   public function __get(string $name)
   {
-    if (isset($this->$name)) {
-      return $this->$name;
+    if (isset($this[$name])) {
+      return $this[$name];
     }
 
     return null;
@@ -42,7 +42,7 @@ abstract class AbstractIO extends Registry
    */
   public function __set(string $name, $value)
   {
-    $this->$name = $value;
+    $this[$name] = $value;
   }
 
   /**

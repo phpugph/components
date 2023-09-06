@@ -1,19 +1,19 @@
 {
   "name": "phpugph/components",
   "type": "library",
-  "description": "Common PHP8 Patterns and Constructs",
+  "description": "Common PHP8.2 Patterns and Constructs",
   "keywords": [
     "library",
-    "php81"
+    "php82"
   ],
   "license": "MIT",
   "require-dev": {
-    "php-coveralls/php-coveralls": "2.5.2",
-    "phpunit/phpunit": "9.5.21",
-    "squizlabs/php_codesniffer": "3.7.1"
+    "php-coveralls/php-coveralls": "2.6.0",
+    "phpunit/phpunit": "10.3.3",
+    "squizlabs/php_codesniffer": "3.7.2"
   },
   "require": {
-    "php": ">=8.1"
+    "php": ">=8.2"
   },
   "autoload": {
     "psr-4": {
